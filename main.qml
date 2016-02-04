@@ -39,7 +39,18 @@ Window {
 
     }
 
-    property Player player:Player{}
+    property Player player:Player{
+        heroList: [
+            Hero{
+                name:"Fajra virkato"
+                image:""
+            },
+            Hero{
+                name:"Fajra virkato"
+                image:""
+            }
+        ]
+    }
 
     Component{
         id:heroHall

@@ -20,6 +20,7 @@ Rectangle {
                 anchors.margins: 5
                 spacing: 5
                 model:player.heroList
+                clip: true
                 delegate: HeroDelegate{
                     text:"Персонаж " + index
                 }

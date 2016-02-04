@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
 
     qmlRegisterType<BalancedComponent>("eh3",1,0,"BalancedComponent");
 
-    engine.load(QUrl(QStringLiteral("../EH3/main.qml")));
+    engine.load(QUrl(QStringLiteral("qrc:///main.qml")));
 
     return app.exec();
 }
