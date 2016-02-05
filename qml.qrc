@@ -4,7 +4,8 @@
         <file>WorldLocationButton.qml</file>
         <file>HeroHall.qml</file>
         <file>HeroDelegate.qml</file>
-        <file>Player.qml</file>
         <file>Hero.qml</file>
+        <file>Skill.qml</file>
+        <file>HeroStat.qml</file>
     </qresource>
 </RCC>

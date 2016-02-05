@@ -1,5 +1,6 @@
 import QtQuick 2.5
 import QtQuick.Window 2.2
+import QtQuick.Controls 1.4
 
 import eh3 1.0
 
@@ -37,6 +38,13 @@ Window {
             anchors.fill: parent
         }
 
+        Button{
+            anchors.right: parent.right
+            anchors.bottom: parent.bottom
+            text:"Назад на карту"
+            visible: currentScreen.status===Loader.Ready
+            onClicked: currentScreen.sourceComponent=undefined
+        }
     }
 
     property Player player:Player{
@@ -46,16 +54,20 @@ Window {
                 image:""
             },
             Hero{
-                name:"Fajra virkato"
+                name:"Henrietta"
                 image:""
             }
         ]
+        function createHero(){
+            var heroSource=Qt.createComponent("Hero.qml")
+            var newHero=heroSource.createObject(this)
+            addHero(newHero)
+        }
     }
 
     Component{
         id:heroHall
         HeroHall{}
     }
-
 }
 

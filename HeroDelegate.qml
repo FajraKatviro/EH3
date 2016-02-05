@@ -2,6 +2,7 @@ import QtQuick 2.0
 
 Rectangle {
     id:heroView
+    property Hero hero
     property alias text:txt.text
     property alias image:img.source
     anchors{
