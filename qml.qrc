@@ -4,8 +4,14 @@
         <file>WorldLocationButton.qml</file>
         <file>HeroHall.qml</file>
         <file>HeroDelegate.qml</file>
-        <file>Player.qml</file>
         <file>Hero.qml</file>
         <file>SkillStat.qml</file>
+        <file>Skill.qml</file>
+        <file>HeroStat.qml</file>
+        <file>DefaultSkill.qml</file>
+        <file>DefaultEmission.qml</file>
+        <file>Emission.qml</file>
+        <file>DefaultEmissionGroup.qml</file>
+        <file>EmissionGroup.qml</file>
     </qresource>
 </RCC>

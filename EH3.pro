@@ -4,7 +4,9 @@ QT += qml quick
 CONFIG += c++11
 
 SOURCES += main.cpp \
-    BalancedComponent.cpp
+    BalancedComponent.cpp \
+    Player.cpp \
+    HeroObject.cpp
 
 RESOURCES += qml.qrc
 
@@ -15,5 +17,8 @@ QML_IMPORT_PATH =
 include(deployment.pri)
 
 HEADERS += \
-    BalancedComponent.h
+    BalancedComponent.h \
+    Player.h \
+    ListPropertyLayer.h \
+    HeroObject.h
 

@@ -3,6 +3,10 @@
 #include <QtQml>
 
 #include "BalancedComponent.h"
+#include "Player.h"
+#include "HeroObject.h"
+
+#define ADD_QML_TYPE(typeName) qmlRegisterType<typeName>("eh3",1,0,#typeName)
 
 int main(int argc, char *argv[])
 {
@@ -10,7 +14,9 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
 
-    qmlRegisterType<BalancedComponent>("eh3",1,0,"BalancedComponent");
+    ADD_QML_TYPE(BalancedComponent);
+    ADD_QML_TYPE(Player);
+    ADD_QML_TYPE(HeroObject);
 
     engine.load(QUrl(QStringLiteral("qrc:///main.qml")));
 

@@ -5,7 +5,8 @@ BalancedComponent {
     property string stat
     property string title
     readonly property HeroStat heroStat: findStat(stat)
-    readonly property int usedPower:parentBalancedComponent*(importance/parentBalancedComponent.childrenImportanceBalance)
-    readonly property int points:heroStat ? usedPower/heroStat.finalCost
+    readonly property int usedPower:parentBalancedComponent.usedPower*(importance/parentBalancedComponent.childrenImportanceBalance)
+    readonly property int points:heroStat ? usedPower/heroStat.finalCost : 0
+    property var value
 }
 
