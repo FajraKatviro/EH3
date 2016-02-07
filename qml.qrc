@@ -13,5 +13,9 @@
         <file>Emission.qml</file>
         <file>DefaultEmissionGroup.qml</file>
         <file>EmissionGroup.qml</file>
+        <file>FireLine.qml</file>
+        <file>WaterBlast.qml</file>
+        <file>DefaultHero.qml</file>
+        <file>SkillStatDelegate.qml</file>
     </qresource>
 </RCC>

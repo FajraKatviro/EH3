@@ -6,15 +6,15 @@
 template <class T>
 struct ListPropertyLayer{
     QList<T*> list;
-    QQmlListProperty<T> reader(QObject* parent){
+    virtual QQmlListProperty<T> reader(QObject* parent){
         return QQmlListProperty<T>(parent,this,&append,&count,&at,&clear);
     }
-    void append(T* value){
+    virtual void append(T* value){
         list.append(value);
     }
     static void append(QQmlListProperty<T>* property, T* value){
         ListPropertyLayer<T>* layer=static_cast<ListPropertyLayer<T>*>(property->data);
-        layer->list.append(value);
+        layer->append(value);
     }
     static T* at(QQmlListProperty<T>* property,int index){
         ListPropertyLayer<T>* layer=static_cast<ListPropertyLayer<T>*>(property->data);

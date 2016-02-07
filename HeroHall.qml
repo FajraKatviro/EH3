@@ -6,15 +6,18 @@ import eh3 1.0
 Rectangle {
     id:hall
     color:"lightgreen"
-    Row{
+    RowLayout{
         anchors.fill: parent
+        spacing: 0
         Rectangle{
             border.width: 2
-            anchors{
-                top:parent.top
-                bottom:parent.bottom
-            }
-            width:200
+//            anchors{
+//                top:parent.top
+//                bottom:parent.bottom
+//            }
+//            width:200
+            Layout.fillHeight: true
+            Layout.preferredWidth: 200
             ListView{
                 id:heroList
                 anchors.fill:parent
@@ -74,11 +77,13 @@ Rectangle {
         Rectangle{
             border.width: 2
             id:heroView
-            anchors{
-                top:parent.top
-                bottom:parent.bottom
-            }
-            width:300
+//            anchors{
+//                top:parent.top
+//                bottom:parent.bottom
+//            }
+//            width:300
+            Layout.fillHeight: true
+            Layout.preferredWidth: 300
             TextInput{
                 anchors.centerIn: parent
                 text:heroList.currentItem.text
@@ -91,11 +96,13 @@ Rectangle {
         Rectangle{
             border.width: 2
             id:skillView
-            anchors{
-                top:parent.top
-                bottom:parent.bottom
-            }
-            width:300
+//            anchors{
+//                top:parent.top
+//                bottom:parent.bottom
+//            }
+//            width:300
+            Layout.fillHeight: true
+            Layout.preferredWidth: 300
             Column{
                 anchors.fill: parent
                 Text{
@@ -154,6 +161,7 @@ Rectangle {
                                 }
                             }
                             delegate: Item{
+                                property Skill skill:modelData
                                 width: skillGrid.cellWidth
                                 height: skillGrid.cellWidth
                                 Rectangle{
@@ -161,6 +169,15 @@ Rectangle {
                                     anchors.margins: 2
                                     radius: 4
                                     border.width: 2
+                                    Text{
+                                        anchors.fill: parent
+                                        anchors.margins: 2
+                                        wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                                        verticalAlignment: Text.AlignVCenter
+                                        horizontalAlignment: Text.AlignHCenter
+                                        text:modelData.name
+                                        font.pointSize: 10
+                                    }
                                 }
                             }
                         }
@@ -248,7 +265,7 @@ Rectangle {
                                         anchors.fill: parent
                                         verticalAlignment: Text.AlignVCenter
                                         horizontalAlignment: Text.AlignHCenter
-                                        text:modelData.totalCost
+                                        text:modelData.finalCost
                                     }
                                     border.width: 2
                                     radius:4
@@ -256,6 +273,32 @@ Rectangle {
                             }
                         }
                     }
+                }
+            }
+        }
+        Rectangle{
+            border.width: 2
+            id:skillSettingsView
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            property Skill currentSkill:skillGrid.currentItem.skill
+            Column{
+                anchors.fill: parent
+                Text{
+                    anchors{
+                        left:parent.left
+                        right:parent.right
+                    }
+                    height: 50
+                    verticalAlignment: Text.AlignVCenter
+                    horizontalAlignment: Text.AlignHCenter
+                    text:skillSettingsView.currentSkill.name
+                }
+                SkillStatDelegate{
+                    stat:skillSettingsView.currentSkill.castTime
+                }
+                SkillStatDelegate{
+                    stat:skillSettingsView.currentSkill.recastTime
                 }
             }
         }

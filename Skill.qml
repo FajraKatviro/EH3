@@ -5,11 +5,13 @@ BalancedComponent {
     property string name:"Новое заклинание"
     property string icon
     importance: 1.0
-    readonly property int usedPower:heroPower
+    readonly property int usedPower:hero ? hero.heroPower : 0
+    property var hero
 
-    readonly property SkillStat castTime:cast
-    readonly property SkillStat recastTime:recast
+    readonly property alias castTime:cast
+    readonly property alias recastTime:recast
     property EmissionGroup emissions
+    onEmissionsChanged: addBalancedChild(emissions)
 
     SkillStat{
         id:cast

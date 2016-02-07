@@ -10,5 +10,5 @@ QtObject {
     property real basicMult:1.0
 
     readonly property real mult: 1/(basicMult+battlePoints*education)
-    readonly property int totalCost:basicCost*mult
+    readonly property int finalCost:basicCost*mult
 }

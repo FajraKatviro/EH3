@@ -16,6 +16,15 @@ void BalancedComponent::refreshBalance(){
     }
 }
 
+void BalancedComponent::addBalancedChild(BalancedComponent* value){
+    if(!_childComponents.contains(value)){
+        _childComponents.append(value);
+        value->setParentBalancedComponent(this);
+        refreshBalance();
+        emit childBalancedComponentsChanged();
+    }
+}
+
 BalancedComponent* BalancedComponent::parentBalancedComponent() const{
     return _parentComponent;
 }

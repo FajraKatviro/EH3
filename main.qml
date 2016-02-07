@@ -6,8 +6,8 @@ import eh3 1.0
 
 Window {
     visible: true
-    width:800
-    height:600
+    width:1280
+    height:1024
 
     Item{
         id:root
@@ -15,23 +15,28 @@ Window {
 
         Image{
             id:bg
-            anchors.centerIn: parent
+            anchors.fill: parent
+            source: "images/MainMenu.jpg"
         }
 
         WorldLocationButton{
             id:hall
-            x:80
-            y:150
+            x:50
+            y:525
             text:"Зал героев"
             onClicked: currentScreen.sourceComponent=heroHall
         }
 
         WorldLocationButton{
             id:cursedWell
-            x:400
-            y:300
+            x:325
+            y:800
             text:"Бездонный колодец"
         }
+//        MouseArea{
+//            anchors.fill: parent
+//            onClicked: console.log(mouseX,mouseY)
+//        }
 
         Loader{
             id:currentScreen
@@ -41,9 +46,9 @@ Window {
         Button{
             anchors.right: parent.right
             anchors.bottom: parent.bottom
-            text:"Назад на карту"
-            visible: currentScreen.status===Loader.Ready
-            onClicked: currentScreen.sourceComponent=undefined
+            text:currentScreen.status===Loader.Ready ? "Назад на карту" : "Выход"
+            //visible: currentScreen.status===Loader.Ready
+            onClicked: currentScreen.status===Loader.Ready ? currentScreen.sourceComponent=undefined : Qt.quit()
         }
     }
 
@@ -52,14 +57,16 @@ Window {
             Hero{
                 name:"Fajra virkato"
                 image:""
+                skills:FireLine{}
             },
             Hero{
                 name:"Henrietta"
                 image:""
+                skills:WaterBlast{}
             }
         ]
         function createHero(){
-            var heroSource=Qt.createComponent("Hero.qml")
+            var heroSource=Qt.createComponent("DefaultHero.qml")
             var newHero=heroSource.createObject(this)
             addHero(newHero)
         }
@@ -69,5 +76,7 @@ Window {
         id:heroHall
         HeroHall{}
     }
+
+    Component.onCompleted: showFullScreen()
 }
 

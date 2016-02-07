@@ -20,6 +20,7 @@ signals:
     void childrenImportanceBalanceChanged();
 public slots:
     void refreshBalance();
+    void addBalancedChild(BalancedComponent* value);
 private:
     BalancedComponent* parentBalancedComponent()const;
     QQmlListProperty<BalancedComponent> childBalancedComponents();

@@ -6,7 +6,7 @@ HeroObject {
     property string image
     property int heroPower:1000
     function createSkill(){
-        var sourceComponent=Qt.createComponent("Skill.qml")
+        var sourceComponent=Qt.createComponent("DefaultSkill.qml")
         var newSkill=sourceComponent.createObject(this)
         addSkill(newSkill)
     }
@@ -37,5 +37,7 @@ HeroObject {
             education: 0.0007
         }
     ]
+    skills:[]
+    onSkillAdded:skill.hero=this
 }
 

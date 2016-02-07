@@ -8,7 +8,8 @@ SOURCES += main.cpp \
     Player.cpp \
     HeroObject.cpp
 
-RESOURCES += qml.qrc
+RESOURCES += qml.qrc \
+    images.qrc
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
@@ -21,4 +22,6 @@ HEADERS += \
     Player.h \
     ListPropertyLayer.h \
     HeroObject.h
+
+DISTFILES += MainMenu.jpg
 
