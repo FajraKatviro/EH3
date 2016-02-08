@@ -35,8 +35,6 @@ private:
             emit owner->skillAdded(value);
         }
     } _skills;
-
-    //friend struct SkillPropertyLayer;
 };
 
 

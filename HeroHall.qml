@@ -161,6 +161,7 @@ Rectangle {
                                 }
                             }
                             delegate: Item{
+                                id:skillDelegate
                                 property Skill skill:modelData
                                 width: skillGrid.cellWidth
                                 height: skillGrid.cellWidth
@@ -177,6 +178,10 @@ Rectangle {
                                         horizontalAlignment: Text.AlignHCenter
                                         text:modelData.name
                                         font.pointSize: 10
+                                    }
+                                    MouseArea{
+                                        anchors.fill: parent
+                                        onClicked: skillDelegate.GridView.view.currentIndex=index
                                     }
                                 }
                             }

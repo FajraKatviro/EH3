@@ -1,4 +1,5 @@
 import QtQuick 2.5
+import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.1
 
 Item {
@@ -16,14 +17,22 @@ Item {
         color:"lightgrey"
         RowLayout{
             anchors.fill: parent
+            anchors.margins: 4
             spacing: 0
             Text{
                 Layout.fillHeight: true
                 Layout.preferredWidth: 100
-                Layout.fillWidth: true
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 text: stat.title
                 verticalAlignment: Text.AlignVCenter
+            }
+            Slider{
+                Layout.fillHeight: true
+                Layout.fillWidth: true
+                minimumValue: 0.0
+                maximumValue: 1.0
+                value: stat.importance
+                onValueChanged: stat.importance=value
             }
             Text{
                 Layout.fillHeight: true
