@@ -6,6 +6,7 @@
 template <class T>
 struct ListPropertyLayer{
     QList<T*> list;
+    virtual ~ListPropertyLayer(){}
     virtual QQmlListProperty<T> reader(QObject* parent){
         return QQmlListProperty<T>(parent,this,&append,&count,&at,&clear);
     }

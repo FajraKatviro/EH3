@@ -19,5 +19,8 @@
         <file>SkillStatDelegate.qml</file>
         <file>EmissionDelegate.qml</file>
         <file>EmissionGroupDelegate.qml</file>
+        <file>HeroListView.qml</file>
+        <file>HeroMainView.qml</file>
+        <file>HeroStatsView.qml</file>
     </qresource>
 </RCC>
