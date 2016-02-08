@@ -4,6 +4,7 @@ import QtQuick.Layouts 1.1
 
 Item {
     property var stat
+    property bool showValue: true
     anchors{
         left: parent.left
         right: parent.right
@@ -47,6 +48,7 @@ Item {
                 verticalAlignment: Text.AlignVCenter
             }
             Text{
+                visible: showValue
                 Layout.fillHeight: true
                 Layout.preferredWidth: 50
                 text: stat.value.toFixed(2)

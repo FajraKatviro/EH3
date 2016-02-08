@@ -11,7 +11,7 @@ BalancedComponent {
     readonly property alias castTime:cast
     readonly property alias recastTime:recast
     property EmissionGroup emissions
-    onEmissionsChanged: addBalancedChild(emissions)
+    onEmissionsChanged:if(emissions)addBalancedChild(emissions)
 
     SkillStat{
         id:cast

@@ -189,7 +189,7 @@ Rectangle {
                     }
                 }
                 Text{
-                    text:"Способности"
+                    text:"Боевой опыт"
                     anchors{
                          right: parent.right
                          left: parent.left
@@ -198,6 +198,16 @@ Rectangle {
                     font{
                         pointSize: 20
                     }
+                }
+                Text{
+                    anchors{
+                         right: parent.right
+                         left: parent.left
+                         margins: 4
+                    }
+                    text:"Мощь героя: " + heroList.currentItem.hero.heroPower
+                    font.pointSize: 14
+                    //horizontalAlignment: Text.AlignHCenter
                 }
                 Item{
                     anchors{
@@ -305,6 +315,9 @@ Rectangle {
                 SkillStatDelegate{
                     stat:skillSettingsView.currentSkill.recastTime
                 }
+//                SkillStatDelegate{
+//                    stat:skillSettingsView.currentSkill.emissions
+//                }
             }
         }
     }

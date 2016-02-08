@@ -17,5 +17,7 @@
         <file>WaterBlast.qml</file>
         <file>DefaultHero.qml</file>
         <file>SkillStatDelegate.qml</file>
+        <file>EmissionDelegate.qml</file>
+        <file>EmissionGroupDelegate.qml</file>
     </qresource>
 </RCC>
