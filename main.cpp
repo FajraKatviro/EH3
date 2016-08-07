@@ -10,6 +10,7 @@
 
 int main(int argc, char *argv[])
 {
+    QGuiApplication::setAttribute(Qt::AA_UseOpenGLES);
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
@@ -18,6 +19,7 @@ int main(int argc, char *argv[])
     ADD_QML_TYPE(Player);
     ADD_QML_TYPE(HeroObject);
 
+    //engine.load(QUrl(QStringLiteral("../EH3/main.qml")));
     engine.load(QUrl(QStringLiteral("qrc:///main.qml")));
 
     return app.exec();

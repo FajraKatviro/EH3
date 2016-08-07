@@ -21,6 +21,7 @@ signals:
 public slots:
     void refreshBalance();
     void addBalancedChild(BalancedComponent* value);
+    void removeBalancedChild(qint32 index);
 private:
     BalancedComponent* parentBalancedComponent()const;
     QQmlListProperty<BalancedComponent> childBalancedComponents();

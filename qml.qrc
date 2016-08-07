@@ -19,5 +19,14 @@
         <file>SkillStatDelegate.qml</file>
         <file>EmissionDelegate.qml</file>
         <file>EmissionGroupDelegate.qml</file>
+        <file>ImpactDelegate.qml</file>
+        <file>DamageGroupDelegate.qml</file>
+        <file>DamageGroup.qml</file>
+        <file>DamageOverTimeGroup.qml</file>
+        <file>Impact.qml</file>
+        <file>DamageSource.qml</file>
+        <file>DamageOverTimeSource.qml</file>
+        <file>DamageOverTimeGroupDelegate.qml</file>
+        <file>DamageSourceDelegate.qml</file>
     </qresource>
 </RCC>

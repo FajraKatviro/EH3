@@ -25,6 +25,13 @@ void BalancedComponent::addBalancedChild(BalancedComponent* value){
     }
 }
 
+void BalancedComponent::removeBalancedChild(qint32 index){
+    BalancedComponent* value=_childComponents.takeAt(index);
+    value->setParentBalancedComponent(nullptr);
+    refreshBalance();
+    emit childBalancedComponentsChanged();
+}
+
 BalancedComponent* BalancedComponent::parentBalancedComponent() const{
     return _parentComponent;
 }

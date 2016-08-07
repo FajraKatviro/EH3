@@ -1,5 +1,7 @@
 import QtQuick 2.5
 import QtQuick.Layouts 1.1
+import QtQuick.Controls 1.4
+import QtQuick.Controls.Styles 1.4
 
 import eh3 1.0
 
@@ -84,12 +86,32 @@ Rectangle {
 //            width:300
             Layout.fillHeight: true
             Layout.preferredWidth: 300
-            TextInput{
-                anchors.centerIn: parent
-                text:heroList.currentItem.text
-                onEditingFinished:{
-                    heroList.currentItem.hero.name=text
-                    focus=false
+            Column{
+                TextInput{
+                    id:heroNameInput
+                    //anchors.centerIn: parent
+                    text:heroList.currentItem.text
+                    onEditingFinished:{
+                        heroList.currentItem.hero.name=text
+                        focus=false
+                    }
+                }
+
+                GridView{
+                    model:["Helm","Weapon","Shield","Armor","Amulet","Boots"]
+                    width:200
+                    height: 800
+                    cellHeight: 80
+                    cellWidth: 80
+                    delegate: Rectangle{
+                        color:"violet"
+                        width:80
+                        height: 80
+                        Text{
+                            anchors.centerIn: parent
+                            text:modelData
+                        }
+                    }
                 }
             }
         }
@@ -154,7 +176,7 @@ Rectangle {
                                     MouseArea{
                                         anchors.fill: parent
                                         onClicked: {
-                                            heroList.currentItem.hero.createSkill()
+                                            skillSelector.visible=true
                                             skillGrid.positionViewAtEnd()
                                         }
                                     }
@@ -290,34 +312,132 @@ Rectangle {
                     }
                 }
             }
+            Rectangle{
+                id:skillSelector
+                anchors.fill: parent
+                visible: false
+                ColumnLayout{
+                    anchors{
+                        right: parent.right
+                        left: parent.left
+                    }
+                    Text{
+                        Layout.fillWidth: true
+                        text:"Создать скилл"
+                        font.pointSize: 20
+                        horizontalAlignment: Text.AlignHCenter
+                    }
+                    ListView{
+                        id:createSkillList
+                        Layout.fillWidth: true
+                        model:[ {"text":"Fireball",     "image":"images/skills/fire.jpg",  "skill":"FireLine.qml"},
+                                {"text":"Waterblast",   "image":"images/skills/water.jpg", "skill":"WaterBlast.qml"},
+                                {"text":"Custom skill", "image":"images/skills/custom.jpg","skill":"DefaultSkill.qml"}]
+                        //highlight: Rectangle{color:"yellow"}
+                        delegate:Rectangle{
+                            width:createSkillList.width
+                            height: itemText.implicitHeight
+                            border.width: 2
+                            radius: 4
+                            property string skillFile:modelData.skill
+                            Image{
+                                anchors.fill: parent
+                                anchors.margins: 8
+                                source:modelData.image
+                                Text{
+                                    id:itemText
+                                    anchors.centerIn: parent
+                                    text:modelData.text
+                                    font.pointSize: 20
+                                    MouseArea{
+                                        anchors.fill: parent
+                                        onClicked:{
+                                            heroList.currentItem.hero.createSkill()
+                                            skillSelector.visible=false
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        Layout.preferredHeight: childrenRect.height
+                    }
+//                    Button{
+//                        text:"Создать"
+//                        onClicked:{
+//                            heroList.currentItem.hero.createSkill()
+//                            skillSelector.visible=false
+//                        }
+//                        style:ButtonStyle{
+//                            label:Text{
+//                                font.pointSize:16
+//                                text:control.text
+//                                horizontalAlignment: Text.AlignHCenter
+//                            }
+//                        }
+//                        Layout.fillWidth: true
+//                    }
+                    Button{
+                        text:"Отмена"
+                        onClicked: skillSelector.visible=false
+                        style:ButtonStyle{
+                            label:Text{
+                                font.pointSize:16
+                                text:control.text
+                                horizontalAlignment: Text.AlignHCenter
+                            }
+                        }
+                        Layout.fillWidth: true
+                    }
+                }
+            }
         }
         Rectangle{
             border.width: 2
             id:skillSettingsView
+            Layout.fillWidth:true
             Layout.fillHeight: true
-            Layout.fillWidth: true
             property Skill currentSkill:skillGrid.currentItem.skill
-            Column{
+            ColumnLayout{
+                id:skillColumn
                 anchors.fill: parent
                 Text{
-                    anchors{
-                        left:parent.left
-                        right:parent.right
-                    }
-                    height: 50
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: 50
                     verticalAlignment: Text.AlignVCenter
                     horizontalAlignment: Text.AlignHCenter
                     text:skillSettingsView.currentSkill.name
                 }
                 SkillStatDelegate{
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: 40
                     stat:skillSettingsView.currentSkill.castTime
                 }
                 SkillStatDelegate{
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: 40
                     stat:skillSettingsView.currentSkill.recastTime
                 }
-//                SkillStatDelegate{
-//                    stat:skillSettingsView.currentSkill.emissions
-//                }
+                Rectangle{
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    color:"lightgreen"
+                    border.width:2
+                    radius: 4
+                    Flickable{
+                        id:skillScrollArea
+                        anchors.fill: parent
+                        contentWidth:width
+                        contentHeight:emissionGroupView.height
+                        clip:true
+                        Item{
+                            width:skillScrollArea.width
+                            EmissionGroupDelegate{
+                                id:emissionGroupView
+                                stat:skillSettingsView.currentSkill.emissions
+                            }
+                        }
+                    }
+                }
             }
         }
     }

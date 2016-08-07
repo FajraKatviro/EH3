@@ -1,5 +1,8 @@
 <RCC>
     <qresource prefix="/images">
         <file>MainMenu.jpg</file>
+        <file>skills/custom.jpg</file>
+        <file>skills/fire.jpg</file>
+        <file>skills/water.jpg</file>
     </qresource>
 </RCC>
