@@ -22,19 +22,27 @@ HeroObject {
             basicCost: 25
         },
         HeroStat{
-            name:"waterPower"
-            title:"Владение магией воды"
+            name:"concentration"
+            title:"Концентрация"
+            basicCost: 80
         },
         HeroStat{
-            name:"firePower"
+            name:"water"
+            title:"Владение магией воды"
+            property string specialEffectTitle:"Замедление"
+        },
+        HeroStat{
+            name:"fire"
             title:"Владение магией огня"
             basicCost: 200
+            property string specialEffectTitle:"Понижение брони"
         },
         HeroStat{
-            name:"entPower"
+            name:"entropy"
             title:"Владение магией энтропии"
             basicCost:1500
             education: 0.0007
+            property string specialEffectTitle:"Увеличение получаемого урона"
         }
     ]
     skills:[]

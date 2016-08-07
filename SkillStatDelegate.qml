@@ -5,6 +5,7 @@ import QtQuick.Layouts 1.1
 Item {
     property var stat
     property bool showValue: true
+    property alias statTitle:txtTitle.text
     anchors{
         left: parent.left
         right: parent.right
@@ -21,6 +22,7 @@ Item {
             anchors.margins: 4
             spacing: 0
             Text{
+                id:txtTitle
                 Layout.fillHeight: true
                 Layout.preferredWidth: 100
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
@@ -48,10 +50,10 @@ Item {
                 verticalAlignment: Text.AlignVCenter
             }
             Text{
-                visible: showValue
+                //visible: showValue
                 Layout.fillHeight: true
                 Layout.preferredWidth: 50
-                text: stat.value.toFixed(2)
+                text: showValue ? stat.value.toFixed(2) : "н/д"
                 verticalAlignment: Text.AlignVCenter
             }
         }

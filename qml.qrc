@@ -22,5 +22,14 @@
         <file>HeroListView.qml</file>
         <file>HeroMainView.qml</file>
         <file>HeroStatsView.qml</file>
+        <file>ImpactDelegate.qml</file>
+        <file>DamageGroupDelegate.qml</file>
+        <file>DamageGroup.qml</file>
+        <file>DamageOverTimeGroup.qml</file>
+        <file>Impact.qml</file>
+        <file>DamageSource.qml</file>
+        <file>DamageOverTimeSource.qml</file>
+        <file>DamageOverTimeGroupDelegate.qml</file>
+        <file>DamageSourceDelegate.qml</file>
     </qresource>
 </RCC>
