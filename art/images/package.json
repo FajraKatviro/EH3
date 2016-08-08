@@ -1,0 +1,16 @@
+{
+    "images": [
+        {
+            "path": "mainMenu.png",
+            "sourceSizes": [
+                "1280x1024"
+            ],
+            "usedSizes": [
+                ""
+            ]
+        }
+    ],
+    "sizes": [
+        "1280x1024"
+    ]
+}

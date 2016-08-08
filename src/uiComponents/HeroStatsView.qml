@@ -1,6 +1,8 @@
 import QtQuick 2.5
 import QtQuick.Layouts 1.1
 
+import "../coreComponents"
+
 Rectangle{
     property var sourceHero
     property var currentSkill:skillGrid.currentItem ? skillGrid.currentItem.skill : undefined

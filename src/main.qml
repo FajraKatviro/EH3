@@ -1,4 +1,4 @@
-import QtQuick 2.5
+import QtQuick 2.7
 import QtQuick.Window 2.2
 import QtQuick.Controls 1.4
 
@@ -10,11 +10,15 @@ import "heroes"
 QtObject{
     id:eh3game
 
-    //add children property and overwork existing qml bug
-    property list<QtObject> children
-    default property alias childrenProperty:children
+    readonly property var game: eh3game
+    signal screenRequested(var screenName)
 
-    Window {
+    property string currentScreenName:"MetaMap"
+
+    onScreenRequested: currentScreenName=screenName
+
+    property Window window: Window {
+        id:window
         visible: true
         width:1280
         height:1024
@@ -23,49 +27,32 @@ QtObject{
             id:root
             anchors.fill: parent
 
-            Image{
-                id:bg
+            Rectangle{
+                id:loadingScreen
                 anchors.fill: parent
-                source: "images/MainMenu.jpg"
-            }
-
-            WorldLocationButton{
-                id:hall
-                x:50
-                y:525
-                text:"Зал героев"
-                onClicked: currentScreen.sourceComponent=heroHall
-            }
-
-            WorldLocationButton{
-                id:cursedWell
-                x:325
-                y:800
-                text:"Бездонный колодец"
+                Text{
+                    anchors.centerIn: parent
+                    text:"LOADING..."
+                    font.pixelSize: 80
+                    font.bold: true
+                }
             }
 
             Loader{
                 id:currentScreen
                 anchors.fill: parent
+                source: "uiComponents/" + currentScreenName + ".qml"
+                visible: status===Loader.Ready
             }
 
             Button{
+                id: backButton
                 anchors.right: parent.right
                 anchors.bottom: parent.bottom
-                text:currentScreen.status===Loader.Ready ? "Назад на карту" : "Выход"
-                //visible: currentScreen.status===Loader.Ready
-                onClicked: currentScreen.status===Loader.Ready ? currentScreen.sourceComponent=undefined : Qt.quit()
+                text:currentScreenName!=="MetaMap" ? "Назад на карту" : "Выход"
+                onClicked: currentScreenName!=="MetaMap" ? screenRequested("MetaMap") : Qt.quit()
             }
         }
-
-
-
-        Component{
-            id:heroHall
-            HeroHall{}
-        }
-
-        Component.onCompleted: showFullScreen()
     }
 
     property Player player:Player{
@@ -73,6 +60,10 @@ QtObject{
             FajraVirkato{},
             Henrietta{}
         ]
+    }
+
+    function show(){
+        window.showFullScreen()
     }
 
 }

@@ -3,6 +3,8 @@ TEMPLATE = app
 QT += qml quick
 CONFIG += c++11
 
+DESTDIR = $$PWD/../game
+
 INCLUDEPATH += $PWD/src
 
 SOURCES += main.cpp \
@@ -15,8 +17,23 @@ RESOURCES += qml.qrc
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
 
-# Default rules for deployment.
-include(deployment.pri)
+# Build imagesets
+ART_FOLDER = $$PWD/../art
+ART_BUILD_FOLDER = $$OUT_PWD/artBuild
+include(../fkutils/fktools/fkimageset.pri)
+
+# Deployment rules
+VERSION = 0.0.0
+ICON = $$PWD/../icons/icon128x128.png
+RC_ICONS = $$PWD/../icons/icon.ico
+QMAKE_TARGET_PRODUCT = "EH3_demo"
+QMAKE_TARGET_COMPANY = "Fajra Katviro"
+LICENSE = $$PWD/../LICENSE
+DEPLOY_BUILD_FOLDER = $$OUT_PWD/packageBuild
+UPGRADE_CODE = "11b4e5ee-c292-40d8-9458-5be3501ba287"
+SHORT_DESCRIPTION = "EH3 demo"
+LONG_DESCRIPTION = $$PWD/../description.txt
+include(../fkutils/deployTool/fkdeploy.pri)
 
 HEADERS += \
     BalancedComponent.h \

@@ -1,0 +1,3 @@
+[submodule "fkutils"]
+	path = fkutils
+	url = https://github.com/fajrakatviro/fkutils.git

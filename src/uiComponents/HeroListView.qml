@@ -1,6 +1,8 @@
 import QtQuick 2.5
 import QtQuick.Layouts 1.1
 
+import "../visualDelegates"
+
 Rectangle{
     property var sourcePlayer
     property var currentHero:heroList.currentItem ? heroList.currentItem.hero : undefined

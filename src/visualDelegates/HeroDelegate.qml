@@ -1,5 +1,7 @@
 import QtQuick 2.0
 
+import "../coreComponents"
+
 Rectangle {
     id:heroView
     property Hero hero

@@ -12,12 +12,12 @@
         <file>coreComponents/Emission.qml</file>
         <file>coreComponents/EmissionGroup.qml</file>
         <file>coreComponents/Hero.qml</file>
-        <file>coreComponents/HeroHall.qml</file>
         <file>coreComponents/HeroStat.qml</file>
         <file>coreComponents/Impact.qml</file>
         <file>coreComponents/Skill.qml</file>
         <file>coreComponents/SkillStat.qml</file>
         <file>coreComponents/Player.qml</file>
+        <file>coreComponents/SimpleObject.qml</file>
         <file>visualDelegates/DamageGroupDelegate.qml</file>
         <file>visualDelegates/DamageOverTimeGroupDelegate.qml</file>
         <file>visualDelegates/DamageSourceDelegate.qml</file>
@@ -31,7 +31,11 @@
         <file>uiComponents/HeroSkillView.qml</file>
         <file>uiComponents/HeroStatsView.qml</file>
         <file>uiComponents/WorldLocationButton.qml</file>
+        <file>uiComponents/HeroHall.qml</file>
+        <file>uiComponents/MetaMap.qml</file>
         <file>heroes/FajraVirkato.qml</file>
         <file>heroes/Henrietta.qml</file>
+        <file>skills/FireLine.qml</file>
+        <file>skills/WaterBlast.qml</file>
     </qresource>
 </RCC>

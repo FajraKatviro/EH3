@@ -1,0 +1,34 @@
+{
+    "images": [
+        {
+            "path": "custom.png",
+            "sourceSizes": [
+                "1280x1024"
+            ],
+            "usedSizes": [
+                ""
+            ]
+        },
+        {
+            "path": "fire.png",
+            "sourceSizes": [
+                "1280x1024"
+            ],
+            "usedSizes": [
+                ""
+            ]
+        },
+        {
+            "path": "water.png",
+            "sourceSizes": [
+                "1280x1024"
+            ],
+            "usedSizes": [
+                ""
+            ]
+        }
+    ],
+    "sizes": [
+        "1280x1024"
+    ]
+}
