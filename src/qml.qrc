@@ -1,0 +1,37 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>coreComponents/DamageGroup.qml</file>
+        <file>coreComponents/DamageOverTimeGroup.qml</file>
+        <file>coreComponents/DamageOverTimeSource.qml</file>
+        <file>coreComponents/DamageSource.qml</file>
+        <file>coreComponents/DefaultEmission.qml</file>
+        <file>coreComponents/DefaultEmissionGroup.qml</file>
+        <file>coreComponents/DefaultHero.qml</file>
+        <file>coreComponents/DefaultSkill.qml</file>
+        <file>coreComponents/Emission.qml</file>
+        <file>coreComponents/EmissionGroup.qml</file>
+        <file>coreComponents/Hero.qml</file>
+        <file>coreComponents/HeroHall.qml</file>
+        <file>coreComponents/HeroStat.qml</file>
+        <file>coreComponents/Impact.qml</file>
+        <file>coreComponents/Skill.qml</file>
+        <file>coreComponents/SkillStat.qml</file>
+        <file>coreComponents/Player.qml</file>
+        <file>visualDelegates/DamageGroupDelegate.qml</file>
+        <file>visualDelegates/DamageOverTimeGroupDelegate.qml</file>
+        <file>visualDelegates/DamageSourceDelegate.qml</file>
+        <file>visualDelegates/EmissionDelegate.qml</file>
+        <file>visualDelegates/EmissionGroupDelegate.qml</file>
+        <file>visualDelegates/HeroDelegate.qml</file>
+        <file>visualDelegates/ImpactDelegate.qml</file>
+        <file>visualDelegates/SkillStatDelegate.qml</file>
+        <file>uiComponents/HeroListView.qml</file>
+        <file>uiComponents/HeroMainView.qml</file>
+        <file>uiComponents/HeroSkillView.qml</file>
+        <file>uiComponents/HeroStatsView.qml</file>
+        <file>uiComponents/WorldLocationButton.qml</file>
+        <file>heroes/FajraVirkato.qml</file>
+        <file>heroes/Henrietta.qml</file>
+    </qresource>
+</RCC>

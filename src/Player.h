@@ -7,11 +7,11 @@
 
 #include "ListPropertyLayer.h"
 
-class Player : public QObject{
+class PlayerBase : public QObject{
     Q_OBJECT
     Q_PROPERTY(QQmlListProperty<QObject> heroList READ heroList NOTIFY heroListChanged)
 public:
-    explicit Player(QObject *parent = 0);
+    explicit PlayerBase(QObject *parent = 0);
 signals:
     void heroListChanged();
 public slots:

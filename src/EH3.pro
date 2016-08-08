@@ -3,13 +3,14 @@ TEMPLATE = app
 QT += qml quick
 CONFIG += c++11
 
+INCLUDEPATH += $PWD/src
+
 SOURCES += main.cpp \
     BalancedComponent.cpp \
     Player.cpp \
     HeroObject.cpp
 
-RESOURCES += qml.qrc \
-    images.qrc
+RESOURCES += qml.qrc
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =

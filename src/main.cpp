@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
 
     ADD_QML_TYPE(BalancedComponent);
-    ADD_QML_TYPE(Player);
+    ADD_QML_TYPE(PlayerBase);
     ADD_QML_TYPE(HeroObject);
 
     //engine.load(QUrl(QStringLiteral("../EH3/main.qml")));
