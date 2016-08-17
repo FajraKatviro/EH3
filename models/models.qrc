@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/models">
+        <file>mouse.obj</file>
+    </qresource>
+</RCC>

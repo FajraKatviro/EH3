@@ -45,6 +45,22 @@ QtObject{
                 visible: status===Loader.Ready
             }
 
+            TextArea{
+                id: evalCode
+                anchors.right: parent.right
+                anchors.top: parent.top
+                height: 200
+                width: 400
+            }
+
+            Button{
+                id: evalBtn
+                anchors.right: parent.right
+                anchors.bottom: evalCode.bottom
+                text:"Eval"
+                onClicked: currentScreen.item.eval(evalCode.text)
+            }
+
             Button{
                 id: backButton
                 anchors.right: parent.right

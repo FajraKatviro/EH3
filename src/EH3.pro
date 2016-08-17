@@ -1,6 +1,6 @@
 TEMPLATE = app
 
-QT += qml quick
+QT += qml quick 3dcore 3drender 3dinput 3dlogic
 CONFIG += c++11
 
 DESTDIR = $$PWD/../game
@@ -12,7 +12,7 @@ SOURCES += main.cpp \
     Player.cpp \
     HeroObject.cpp
 
-RESOURCES += qml.qrc
+RESOURCES += qml.qrc ../models/models.qrc
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
