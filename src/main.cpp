@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
     QGuiApplication::setAttribute(Qt::AA_UseOpenGLES);
     QGuiApplication app(argc, argv);
 
-    QSize baseSize(600,400);
+    QSize baseSize(1280,1024);
     QSize screenSize(app.primaryScreen()->size());
 
     if(!FKUtility::loadImageset("images",screenSize)){

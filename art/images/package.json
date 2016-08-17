@@ -1,9 +1,10 @@
 {
     "images": [
         {
+            "crop": true,
             "path": "mainMenu.png",
             "sourceSizes": [
-                "1280x1024"
+                "2560x1600"
             ],
             "usedSizes": [
                 ""
