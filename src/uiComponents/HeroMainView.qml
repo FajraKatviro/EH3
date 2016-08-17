@@ -6,6 +6,8 @@ import Qt3D.Render 2.0
 import Qt3D.Extras 2.0
 import QtQuick.Scene3D 2.0
 
+import "../debugComponents"
+
 QQ.Rectangle{
     property var sourceHero
     border.width: 2
@@ -25,10 +27,10 @@ QQ.Rectangle{
                 id: camera
                 projectionType: CameraLens.PerspectiveProjection
                 fieldOfView: 45
-                aspectRatio: 0.8//16/9
+                aspectRatio: 0.5//16/9
                 nearPlane : 0.1
                 farPlane : 1000.0
-                position: Qt.vector3d( 0.0, 20.0, -40.0 )
+                position: Qt.vector3d( 0.0, 0.0, -40.0 )
                 upVector: Qt.vector3d( 0.0, 1.0, 0.0 )
                 viewCenter: Qt.vector3d( 0.0, 0.0, 0.0 )
             }
@@ -55,7 +57,7 @@ QQ.Rectangle{
             Transform {
                 id: torusTransform
                 scale3D: Qt.vector3d(0.05, 0.05, 0.05)
-                rotation: fromAxisAndAngle(Qt.vector3d(0, 1, 0), 180 + factor)
+                rotation: fromAxisAndAngle(Qt.vector3d(0, 1, 0), 180 + mouseControl.rotation * factor)
             }
 
             Entity {
@@ -76,7 +78,20 @@ QQ.Rectangle{
     }
     property real factor:1.0
     QQ.MouseArea{
+        id:mouseControl
         anchors.fill: parent
-        onClicked: factor+=1.0
+        property real pos
+        property real rotation:0.0
+        readonly property real snap: 1.0
+        onPressed: pos=mouseX
+        onMouseXChanged: {
+            var dx=mouseX-pos
+            pos=mouseX
+            rotation+=dx
+        }
+    }
+
+    Evaluator{
+        objectName: "heroView"
     }
 }

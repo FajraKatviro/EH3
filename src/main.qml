@@ -7,11 +7,20 @@ import "uiComponents"
 import "coreComponents"
 import "heroes"
 
+import "debugComponents"
+
 QtObject{
     id:eh3game
 
     readonly property var game: eh3game
     signal screenRequested(var screenName)
+
+    signal evalRequested(var src)
+    signal evalActivated(var target)
+
+    function activateEvaluator(target){
+        evalActivated(target)
+    }
 
     property string currentScreenName:"MetaMap"
 
@@ -58,7 +67,13 @@ QtObject{
                 anchors.right: parent.right
                 anchors.bottom: evalCode.bottom
                 text:"Eval"
-                onClicked: currentScreen.item.eval(evalCode.text)
+                onClicked: {
+                    if(evalCode.text===""){
+                        activateEvaluator("root")
+                    }else{
+                        evalRequested(evalCode.text)
+                    }
+                }
             }
 
             Button{
@@ -80,6 +95,11 @@ QtObject{
 
     function show(){
         window.showFullScreen()
+    }
+
+    property Evaluator evaluator: Evaluator{
+        objectName: "root"
+        active: true
     }
 
 }

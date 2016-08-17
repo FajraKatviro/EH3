@@ -37,5 +37,6 @@
         <file>heroes/Henrietta.qml</file>
         <file>skills/FireLine.qml</file>
         <file>skills/WaterBlast.qml</file>
+        <file>debugComponents/Evaluator.qml</file>
     </qresource>
 </RCC>
