@@ -2,6 +2,8 @@ import QtQuick 2.7
 import QtQuick.Window 2.2
 import QtQuick.Controls 1.4
 
+import QtMultimedia 5.7
+
 import eh3 1.0
 import "uiComponents"
 import "coreComponents"
@@ -100,6 +102,12 @@ QtObject{
     property Evaluator evaluator: Evaluator{
         objectName: "root"
         active: true
+    }
+
+    property var music:Audio{
+        autoPlay: true
+        source: "qrc:///music/mainMenu.mp3"
+        loops: Audio.Infinite
     }
 
 }
