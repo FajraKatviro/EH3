@@ -1,5 +1,8 @@
 <RCC>
     <qresource prefix="/models">
-        <file>mouse.obj</file>
+        <file>tyrend.obj</file>
+        <file>tyrend_diff.tga</file>
+        <file>tyrend_spec.tga</file>
+        <file>tyrend_norm.tga</file>
     </qresource>
 </RCC>

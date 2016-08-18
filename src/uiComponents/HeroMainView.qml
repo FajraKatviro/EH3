@@ -39,25 +39,30 @@ QQ.Rectangle{
             components: [
                 RenderSettings {
                     activeFrameGraph: ForwardRenderer {
-                        clearColor: Qt.rgba(0, 0.5, 1, 1)
+                        clearColor: Qt.rgba(0.0, 0.0, 0.0, 1)
                         camera: camera
                     }
                 }
             ]
 
-            PhongMaterial {
+            NormalDiffuseSpecularMapMaterial {
                 id: material
+                diffuse: "qrc:///models/tyrend_diff.tga"
+                specular: "qrc:///models/tyrend_spec.tga"
+                normal: "qrc:///models/tyrend_norm.tga"
+                shininess: 10.0
             }
 
             Mesh {
                 id: torusMesh
-                source:"qrc:///models/mouse.obj"
+                source:"qrc:///models/tyrend.obj"
             }
 
             Transform {
                 id: torusTransform
-                scale3D: Qt.vector3d(0.05, 0.05, 0.05)
-                rotation: fromAxisAndAngle(Qt.vector3d(0, 1, 0), 180 + mouseControl.rotation * factor)
+                translation: Qt.vector3d(0, -10, 0)
+                scale3D: Qt.vector3d(3, 3, 3)
+                rotation: fromAxesAndAngles(Qt.vector3d(1, 0, 0), 270, Qt.vector3d(0, 1, 0), 180 + mouseControl.rotation * factor)
             }
 
             Entity {
