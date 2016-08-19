@@ -15,6 +15,8 @@ QQ.Rectangle{
     Layout.fillHeight: true
     Layout.preferredWidth: baseWidth * 0.3 * sizeSet
 
+    property string model: sourceHero.model
+    property real modelScale: sourceHero.scale
 
     Scene3D{
         id:scene3d
@@ -56,21 +58,21 @@ QQ.Rectangle{
 
             NormalDiffuseSpecularMapMaterial {
                 id: material
-                diffuse: "qrc:///models/tyrend_diff.tga"
-                specular: "qrc:///models/tyrend_spec.tga"
-                normal: "qrc:///models/tyrend_norm.tga"
+                diffuse: "qrc:///models/" + heroView.model + "_diff.png"
+                specular: "qrc:///models/" + heroView.model + "_spec.png"
+                normal: "qrc:///models/" + heroView.model + "_norm.png"
                 shininess: 0
             }
 
             Mesh {
                 id: torusMesh
-                source:"qrc:///models/tyrend.obj"
+                source:"qrc:///models/" + heroView.model + ".obj"
             }
 
             Transform {
                 id: torusTransform
                 translation: Qt.vector3d(0, -10, 0)
-                scale3D: Qt.vector3d(3, 3, 3)
+                scale3D: Qt.vector3d(modelScale, modelScale, modelScale)
                 rotation: fromAxesAndAngles(Qt.vector3d(1, 0, 0), 270, Qt.vector3d(0, 1, 0), 180 + mouseControl.rotation * factor)
             }
 

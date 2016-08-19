@@ -1,8 +1,12 @@
 <RCC>
     <qresource prefix="/models">
         <file>tyrend.obj</file>
-        <file>tyrend_diff.tga</file>
-        <file>tyrend_spec.tga</file>
-        <file>tyrend_norm.tga</file>
+        <file>tyrend_diff.png</file>
+        <file>tyrend_spec.png</file>
+        <file>tyrend_norm.png</file>
+        <file>illidan.obj</file>
+        <file>illidan_diff.png</file>
+        <file>illidan_spec.png</file>
+        <file>illidan_norm.png</file>
     </qresource>
 </RCC>
