@@ -13,12 +13,14 @@ QQ.Rectangle{
     border.width: 2
     id:heroView
     Layout.fillHeight: true
-    Layout.preferredWidth: 300
+    Layout.preferredWidth: baseWidth * 0.3 * sizeSet
 
 
     Scene3D{
+        id:scene3d
         anchors.fill: parent
         cameraAspectRatioMode: Scene3D.AutomaticAspectRatio
+
 
         Entity {
             id: sceneRoot
@@ -27,7 +29,7 @@ QQ.Rectangle{
                 id: camera
                 projectionType: CameraLens.PerspectiveProjection
                 fieldOfView: 45
-                aspectRatio: 0.5//16/9
+                aspectRatio: scene3d.width/scene3d.height
                 nearPlane : 0.1
                 farPlane : 1000.0
                 position: Qt.vector3d( 0.0, 0.0, -40.0 )
