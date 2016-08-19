@@ -17,6 +17,8 @@ QtObject{
 
     function doActivate(target){
         active=target===objectName
+        if(active)
+            console.log(target + " activated")
     }
 
     function doEvaluation(src){

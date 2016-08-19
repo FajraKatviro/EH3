@@ -28,6 +28,14 @@ QtObject{
 
     onScreenRequested: currentScreenName=screenName
 
+    function handleEval(){
+        if(evalCode.text===""){
+            activateEvaluator("root")
+        }else{
+            evalRequested(evalCode.text)
+        }
+    }
+
     property Window window: Window {
         id:window
         visible: true
@@ -69,13 +77,7 @@ QtObject{
                 anchors.right: parent.right
                 anchors.bottom: evalCode.bottom
                 text:"Eval"
-                onClicked: {
-                    if(evalCode.text===""){
-                        activateEvaluator("root")
-                    }else{
-                        evalRequested(evalCode.text)
-                    }
-                }
+                onClicked: handleEval()
             }
 
             Button{
@@ -105,7 +107,7 @@ QtObject{
     }
 
     property var music:Audio{
-        autoPlay: true
+        //autoPlay: true
         source: "qrc:///music/mainMenu.mp3"
         loops: Audio.Infinite
     }

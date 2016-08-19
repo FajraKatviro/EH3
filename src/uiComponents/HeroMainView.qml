@@ -37,11 +37,18 @@ QQ.Rectangle{
                 viewCenter: Qt.vector3d( 0.0, 0.0, 0.0 )
             }
 
+            DirectionalLight{
+                id:light
+                worldDirection: Qt.vector3d( -0.3, -0.5, 0.2 )
+                color : "white"
+                intensity : 2.0
+            }
 
             components: [
                 RenderSettings {
                     activeFrameGraph: ForwardRenderer {
-                        clearColor: Qt.rgba(0.0, 0.0, 0.0, 1)
+                        id:renderer
+                        clearColor:  "#FF112244"
                         camera: camera
                     }
                 }
@@ -52,7 +59,7 @@ QQ.Rectangle{
                 diffuse: "qrc:///models/tyrend_diff.tga"
                 specular: "qrc:///models/tyrend_spec.tga"
                 normal: "qrc:///models/tyrend_norm.tga"
-                shininess: 10.0
+                shininess: 0
             }
 
             Mesh {
@@ -69,7 +76,7 @@ QQ.Rectangle{
 
             Entity {
                 id: torusEntity
-                components: [ torusMesh, material, torusTransform ]
+                components: [ torusMesh, material, torusTransform, light ]
             }
 
         }
