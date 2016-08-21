@@ -8,7 +8,8 @@ struct ListPropertyLayer{
     QList<T*> list;
     virtual ~ListPropertyLayer(){}
     virtual QQmlListProperty<T> reader(QObject* parent){
-        return QQmlListProperty<T>(parent,this,&append,&count,&at,&clear);
+        QQmlListProperty<T> prop(parent,this,&ListPropertyLayer<T>::append,&ListPropertyLayer<T>::count,&ListPropertyLayer<T>::at,&ListPropertyLayer<T>::clear);
+        return prop;
     }
     virtual void append(T* value){
         list.append(value);

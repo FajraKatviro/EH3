@@ -22,6 +22,7 @@ Item{
         x:parent.width * (325.0 / baseWidth)
         y:parent.height * (800.0 / baseHeight)
         text:"Бездонный колодец"
+        onClicked: game.screenRequested("AbysmalWell")
     }
 
 }

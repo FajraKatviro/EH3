@@ -37,7 +37,7 @@ BalancedComponent* BalancedComponent::parentBalancedComponent() const{
 }
 
 QQmlListProperty<BalancedComponent> BalancedComponent::childBalancedComponents(){
-    return QQmlListProperty<BalancedComponent>(this,nullptr,&addBalancedChild,&countBalancedChildren,&getBalancedChild,&clearBalancedChildren);
+    return QQmlListProperty<BalancedComponent>(this,nullptr,&BalancedComponent::addBalancedChild,&BalancedComponent::countBalancedChildren,&BalancedComponent::getBalancedChild,&BalancedComponent::clearBalancedChildren);
 }
 
 qreal BalancedComponent::importance() const{

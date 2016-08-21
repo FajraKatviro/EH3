@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/sprites">
+        <file>archer_attack1.png</file>
+        <file>archer_death.png</file>
+        <file>archer_idle.png</file>
+        <file>archer_run.png</file>
+        <file>archer_walk.png</file>
+        <file>knight_attack1.png</file>
+        <file>knight_attack2.png</file>
+        <file>knight_death.png</file>
+        <file>knight_idle.png</file>
+        <file>knight_walk.png</file>
+        <file>skeleton.png</file>
+    </qresource>
+</RCC>
