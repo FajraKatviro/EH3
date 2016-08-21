@@ -38,5 +38,6 @@
         <file>skills/FireLine.qml</file>
         <file>skills/WaterBlast.qml</file>
         <file>debugComponents/Evaluator.qml</file>
+        <file>sprites/Archer.qml</file>
     </qresource>
 </RCC>
