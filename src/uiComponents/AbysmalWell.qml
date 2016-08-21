@@ -3,6 +3,8 @@ import QtQuick.Layouts 1.1
 
 import eh3 1.0
 
+import "../sprites"
+
 Rectangle {
     id:hall
     color:"darkgreen"
@@ -45,25 +47,14 @@ Rectangle {
         }
     }*/
 
-    SpriteSequence{
-
+    Archer{
         id:heroDelegate
         width:100
         height:100
         property real speed: 100
 
+        directionX: 1
 
-        Sprite{
-            //name: "blue"
-            source: "qrc:///sprites/archer_walk.png"
-            frameX: 0
-            frameY: 412
-            frameCount: 15
-            frameWidth: 185
-            frameHeight: 206
-            frameRate: 14
-
-        }
     }
 
     Connections{

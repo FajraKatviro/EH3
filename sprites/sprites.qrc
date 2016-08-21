@@ -10,6 +10,6 @@
         <file>knight_death.png</file>
         <file>knight_idle.png</file>
         <file>knight_walk.png</file>
-        <file>skeleton.png</file>
+        <file>skeleton.png</file> 
     </qresource>
 </RCC>

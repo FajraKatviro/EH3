@@ -40,5 +40,7 @@
         <file>debugComponents/Evaluator.qml</file>
         <file>uiComponents/AbysmalWell.qml</file>
         <file>sprites/Archer.qml</file>
+        <file>sprites/Character.qml</file>
+        <file>sprites/SpriteSetting.qml</file>
     </qresource>
 </RCC>

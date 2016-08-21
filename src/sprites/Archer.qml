@@ -1,90 +1,49 @@
 import QtQuick 2.2
 
-SpriteSequence {
+Character {
 
-    property int directionX:0
-    property int directionY:0
+    setting: walkAnimationSetting
 
-    readonly property int direction:{
-        if(directionX>0){
-            if(directionY>0){
-                return 1
-            }else if(directionY<0){
-                return 3
-            }else{
-                return 2
-            }
-        }else if(directionX<0){
-            if(directionY>0){
-                return 7
-            }else if(directionY<0){
-                return 5
-            }else{
-                return 6
-            }
-        }else{
-            if(directionY>0){
-                return 0
-            }else if(directionY<0){
-                return 4
-            }else{
-                return 0
-            }
-        }
-    }
-
-    Sprite{
-        name:"idle"
+    idleAnimationSetting: SpriteSetting{
         source:"qrc:///sprites/archer_idle.png"
-        frameWidth:100
-        frameHeight:80
-        frameX:0
-        frameY:frameHeight*direction
+        frameWidth:252
+        frameHeight:268
+        frameRate: 20
+        frameCount: 13
     }
 
-    Sprite{
-        name:"attack1"
+    attack1AnimationSetting: SpriteSetting{
         source:"qrc:///sprites/archer_attack1.png"
-        frameWidth:100
-        frameHeight:80
-        frameX:0
-        frameY:frameHeight*direction
+        frameWidth:252
+        frameHeight:268
+        frameRate: 14
+        frameCount: 16
     }
 
-    Sprite{
-        name:"attack2"
-        source:"qrc:///sprites/archer_attack1.png"
-        frameWidth:100
-        frameHeight:80
-        frameX:0
-        frameY:frameHeight*direction
-    }
+    attack2AnimationSetting: attack1AnimationSetting
 
-    Sprite{
-        name:"walk"
+    walkAnimationSetting: SpriteSetting{
         source:"qrc:///sprites/archer_walk.png"
-        frameWidth:100
-        frameHeight:80
-        frameX:0
-        frameY:frameHeight*direction
+        frameWidth:252
+        frameHeight:268
+        frameRate: 20
+        frameCount: 15
     }
 
-    Sprite{
-        name:"run"
+    runAnimationSetting: SpriteSetting{
         source:"qrc:///sprites/archer_run.png"
-        frameWidth:100
-        frameHeight:80
-        frameX:0
-        frameY:frameHeight*direction
+        frameWidth:252
+        frameHeight:268
+        frameRate: 20
+        frameCount: 12
     }
 
-    Sprite{
-        name:"die"
+    dieAnimationSetting: SpriteSetting{
         source:"qrc:///sprites/archer_death.png"
-        frameWidth:100
-        frameHeight:80
-        frameX:0
-        frameY:frameHeight*direction
+        frameWidth:252
+        frameHeight:268
+        frameRate: 20
+        frameCount: 13
     }
 
 }
