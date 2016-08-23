@@ -8,7 +8,7 @@ CharacterSprite {
         source:"qrc:///sprites/archer_walk.png"
         frameWidth:126
         frameHeight:134
-        frameRate: 20
+        frameRate: 10
         frameCount: 13
         startFrame: 15
     }

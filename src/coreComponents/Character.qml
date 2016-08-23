@@ -51,7 +51,8 @@ QtObject {
     function update(dt){
         switch(order){
         case "walk":
-            if(distance === 0){
+            if(distance < 1){
+                pos=target
                 order="idle"
                 break
             }

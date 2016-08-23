@@ -62,7 +62,7 @@ Rectangle {
 
     Character{
         id:heroDelegate
-        speed: 200
+        speed: 250
         sprite:"qrc:///sprites/ArcherSprite.qml"
         order: "idle"
     }

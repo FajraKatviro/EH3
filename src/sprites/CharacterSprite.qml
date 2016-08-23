@@ -4,8 +4,8 @@ AnimatedSprite {
 
     id:character
 
-    width:100
-    height:100
+    width:200
+    height:200
 
     property point direction:Qt.point(0,0)
 
