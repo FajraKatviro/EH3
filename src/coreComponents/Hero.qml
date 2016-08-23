@@ -4,7 +4,8 @@ import eh3 1.0
 HeroObject {
     property string name:"New character"
     property string image
-    property string model: "tyrend"
+    property string model
+    property string characterSprite
     property real scale: 1.0
     property int heroPower:1000
     function createSkill(){

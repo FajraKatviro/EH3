@@ -11,6 +11,7 @@
         <file>coreComponents/DefaultSkill.qml</file>
         <file>coreComponents/Emission.qml</file>
         <file>coreComponents/EmissionGroup.qml</file>
+        <file>coreComponents/Character.qml</file>
         <file>coreComponents/Hero.qml</file>
         <file>coreComponents/HeroStat.qml</file>
         <file>coreComponents/Impact.qml</file>
@@ -39,8 +40,8 @@
         <file>skills/WaterBlast.qml</file>
         <file>debugComponents/Evaluator.qml</file>
         <file>uiComponents/AbysmalWell.qml</file>
-        <file>sprites/Archer.qml</file>
-        <file>sprites/Character.qml</file>
+        <file>sprites/ArcherSprite.qml</file>
+        <file>sprites/CharacterSprite.qml</file>
         <file>sprites/SpriteSetting.qml</file>
     </qresource>
 </RCC>

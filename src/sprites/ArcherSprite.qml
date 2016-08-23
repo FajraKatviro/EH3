@@ -1,15 +1,16 @@
 import QtQuick 2.2
 
-Character {
+CharacterSprite {
 
     setting: walkAnimationSetting
 
     idleAnimationSetting: SpriteSetting{
-        source:"qrc:///sprites/archer_idle.png"
-        frameWidth:252
-        frameHeight:268
+        source:"qrc:///sprites/archer_walk.png"
+        frameWidth:126
+        frameHeight:134
         frameRate: 20
         frameCount: 13
+        startFrame: 15
     }
 
     attack1AnimationSetting: SpriteSetting{
@@ -24,8 +25,8 @@ Character {
 
     walkAnimationSetting: SpriteSetting{
         source:"qrc:///sprites/archer_walk.png"
-        frameWidth:252
-        frameHeight:268
+        frameWidth:126
+        frameHeight:134
         frameRate: 20
         frameCount: 15
     }

@@ -95,6 +95,7 @@ QtObject{
             FajraVirkato{},
             Henrietta{}
         ]
+        currentHero:0
     }
 
     function show(){

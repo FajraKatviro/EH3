@@ -3,6 +3,7 @@ import QtQuick.Layouts 1.1
 
 import eh3 1.0
 
+import "../coreComponents"
 import "../sprites"
 
 Rectangle {
@@ -47,7 +48,26 @@ Rectangle {
         }
     }*/
 
-    Archer{
+   /*Loader{
+        id:heroDelegate
+        property real speed: 100
+        source: "qrc:///sprites/" + player.heroList[player.currentHero].characterSprite
+    }
+
+    Binding{
+        target: heroDelegate.item
+        property:"directionX"
+        value:1
+    }*/
+
+    Character{
+        id:heroDelegate
+        speed: 200
+        sprite:"qrc:///sprites/ArcherSprite.qml"
+        order: "idle"
+    }
+
+    /*ArcherSprite{
         id:heroDelegate
         width:100
         height:100
@@ -55,21 +75,11 @@ Rectangle {
 
         directionX: 1
 
-    }
-
-    Connections{
-        target: hall
-        onNextFrame:{
-            heroDelegate.x+=(heroDelegate.speed*frameDuration*0.001)
-        }
-    }
+    }*/
 
     MouseArea{
         anchors.fill: parent
-        onClicked: {
-            heroDelegate.y = mouseY
-            heroDelegate.x = mouseX
-        }
+        onClicked: heroDelegate.move(mouseX, mouseY)
     }
 
 }

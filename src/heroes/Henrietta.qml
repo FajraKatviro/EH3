@@ -7,4 +7,5 @@ Hero{
     model: "tyrend"
     scale: 3.0
     skills:WaterBlast{}
+    characterSprite: "ArcherSprite.qml"
 }

@@ -7,4 +7,5 @@ Hero{
     model: "illidan"
     scale: 0.07
     skills:FireLine{}
+    characterSprite: "ArcherSprite.qml"
 }
