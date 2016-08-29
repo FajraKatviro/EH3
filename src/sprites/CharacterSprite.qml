@@ -2,14 +2,19 @@ import QtQuick 2.2
 
 AnimatedSprite {
 
-    id:character
+    id:characterSprite
 
     width:200
     height:200
 
-    property point direction:Qt.point(0,0)
+    x:character.pos.x-width/2
+    y:character.pos.y-height*0.9
+    state:character.currentAnimation
 
-    onDirectionChanged: refreshDirection()
+    Connections{
+        target: character
+        onDirectionChanged: refreshDirection()
+    }
 
     property SpriteSetting idleAnimationSetting
     property SpriteSetting attack1AnimationSetting
@@ -21,31 +26,30 @@ AnimatedSprite {
     property SpriteSetting setting
     property int spriteDirection:0
 
-    state:"walk"
     states:[
         State{
             name:"idle"
-            PropertyChanges{target: character; setting:idleAnimationSetting}
+            PropertyChanges{target: characterSprite; setting:idleAnimationSetting}
         },
         State{
             name:"attack1"
-            PropertyChanges{target: character; setting:attack1AnimationSetting}
+            PropertyChanges{target: characterSprite; setting:attack1AnimationSetting}
         },
         State{
             name:"attack2"
-            PropertyChanges{target: character; setting:attack2AnimationSetting}
+            PropertyChanges{target: characterSprite; setting:attack2AnimationSetting}
         },
         State{
             name:"walk"
-            PropertyChanges{target: character; setting:walkAnimationSetting}
+            PropertyChanges{target: characterSprite; setting:walkAnimationSetting}
         },
         State{
             name:"run"
-            PropertyChanges{target: character; setting:runAnimationSetting}
+            PropertyChanges{target: characterSprite; setting:runAnimationSetting}
         },
         State{
             name:"die"
-            PropertyChanges{target: character; setting:dieAnimationSetting}
+            PropertyChanges{target: characterSprite; setting:dieAnimationSetting}
         }
     ]
 

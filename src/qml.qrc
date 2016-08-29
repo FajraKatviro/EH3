@@ -43,5 +43,11 @@
         <file>sprites/ArcherSprite.qml</file>
         <file>sprites/CharacterSprite.qml</file>
         <file>sprites/SpriteSetting.qml</file>
+        <file>behaviour/IdleBehaviour.qml</file>
+        <file>behaviour/CharacterBehaviour.qml</file>
+        <file>behaviour/WalkBehaviour.qml</file>
+        <file>behaviour/MoveToPointOrder.qml</file>
+        <file>behaviour/DynamicBehaviour.qml</file>
+        <file>behaviour/ManualOrderHandler.qml</file>
     </qresource>
 </RCC>

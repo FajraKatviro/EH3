@@ -12,7 +12,10 @@ SOURCES += main.cpp \
     Player.cpp \
     HeroObject.cpp
 
-RESOURCES += qml.qrc ../models/models.qrc  ../music/music.qrc  ../sprites/sprites.qrc
+RESOURCES += qml.qrc
+LARGE_RESOURCES += ../models/models.qrc \
+                   ../music/music.qrc   \
+                   ../sprites/sprites.qrc
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
@@ -43,3 +46,4 @@ HEADERS += \
 
 DISTFILES += MainMenu.jpg
 
+OTHER_FILES += $$LARGE_RESOURCES

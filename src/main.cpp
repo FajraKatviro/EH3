@@ -7,6 +7,8 @@
 #include <QQmlContext>
 #include <QMetaObject>
 
+#include <QResource>
+
 #include "BalancedComponent.h"
 #include "Player.h"
 #include "HeroObject.h"
@@ -29,6 +31,10 @@ int main(int argc, char *argv[])
     if(!FKUtility::loadImageset("skillIcons",screenSize)){
         qDebug("unable load skillIcons");
     }
+
+    QResource::registerResource("models.rcc");
+    QResource::registerResource("music.rcc");
+    QResource::registerResource("sprites.rcc");
 
     qreal sizeSet=std::max(((qreal)screenSize.height())/((qreal)baseSize.height()),
                            ((qreal)screenSize.width ())/((qreal)baseSize.width ()));
