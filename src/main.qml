@@ -12,40 +12,22 @@ import "heroes"
 import "debugComponents"
 
 QtObject{
-    id:eh3game
+    id:game
 
-    readonly property var game: eh3game
-    signal screenRequested(var screenName)
-
-    signal evalRequested(var src)
-    signal evalActivated(var target)
-
-    function activateEvaluator(target){
-        evalActivated(target)
-    }
-
+    //screen
     property string currentScreenName:"MetaMap"
-
+    signal screenRequested(var screenName)
     onScreenRequested: currentScreenName=screenName
 
-    function handleEval(){
-        if(evalCode.text===""){
-            activateEvaluator("root")
-        }else{
-            evalRequested(evalCode.text)
-        }
-    }
-
+    //window
     property Window window: Window {
         id:window
         visible: true
         width:1280
         height:1024
-
         Item{
             id:root
             anchors.fill: parent
-
             Rectangle{
                 id:loadingScreen
                 anchors.fill: parent
@@ -56,14 +38,12 @@ QtObject{
                     font.bold: true
                 }
             }
-
             Loader{
                 id:currentScreen
                 anchors.fill: parent
                 source: "uiComponents/" + currentScreenName + ".qml"
                 visible: status===Loader.Ready
             }
-
             TextArea{
                 id: evalCode
                 anchors.right: parent.right
@@ -71,7 +51,6 @@ QtObject{
                 height: 200
                 width: 400
             }
-
             Button{
                 id: evalBtn
                 anchors.right: parent.right
@@ -79,7 +58,6 @@ QtObject{
                 text:"Eval"
                 onClicked: handleEval()
             }
-
             Button{
                 id: backButton
                 anchors.right: parent.right
@@ -89,7 +67,32 @@ QtObject{
             }
         }
     }
+    function show(){
+        window.showFullScreen()
+    }
 
+    //main timer
+    readonly property real frameDuration: 10
+    readonly property real cellSize: 20
+    property real lastFrame: new Date().getTime()
+    property Timer mainTimer: Timer{
+        id:updater
+        running: true
+        repeat: true
+        interval: 10
+        triggeredOnStart: false
+        onTriggered:{
+            var dt = new Date().getTime() - lastFrame
+            while(dt >= frameDuration){
+                dt-=frameDuration
+                lastFrame+=frameDuration
+                nextFrame(frameDuration)
+            }
+        }
+    }
+    signal nextFrame(var dt)
+
+    //player
     property Player player:Player{
         heroList: [
             FajraVirkato{},
@@ -98,19 +101,29 @@ QtObject{
         currentHero:0
     }
 
-    function show(){
-        window.showFullScreen()
-    }
-
-    property Evaluator evaluator: Evaluator{
-        objectName: "root"
-        active: true
-    }
-
+    //audio
     property var music:Audio{
         //autoPlay: true
         source: "qrc:///music/mainMenu.mp3"
         loops: Audio.Infinite
+    }
+
+    //debug evaluator
+    property Evaluator evaluator: Evaluator{
+        objectName: "root"
+        active: true
+    }
+    signal evalRequested(var src)
+    signal evalActivated(var target)
+    function handleEval(){
+        if(evalCode.text===""){
+            activateEvaluator("root")
+        }else{
+            evalRequested(evalCode.text)
+        }
+    }
+    function activateEvaluator(target){
+        evalActivated(target)
     }
 
 }

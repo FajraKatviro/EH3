@@ -20,6 +20,7 @@ QtObject {
     property Loader spriteLoader: Loader{
         id:charDelegate
         parent: hall
+        z:pos.y
     }
 
 }

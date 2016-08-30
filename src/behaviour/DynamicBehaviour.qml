@@ -1,8 +1,8 @@
 import QtQml.StateMachine 1.0
 
 State{
-    onEntered: hall.nextFrame.connect(update)
-    onExited: hall.nextFrame.disconnect(update)
+    onEntered: game.nextFrame.connect(update)
+    onExited: game.nextFrame.disconnect(update)
 
     function update(dt){
 
