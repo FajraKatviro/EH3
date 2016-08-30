@@ -10,7 +10,9 @@ INCLUDEPATH += $PWD/src
 SOURCES += main.cpp \
     BalancedComponent.cpp \
     Player.cpp \
-    HeroObject.cpp
+    HeroObject.cpp \
+    PathMap.cpp \
+    PathFinder.cpp
 
 RESOURCES += qml.qrc
 LARGE_RESOURCES += ../models/models.qrc \
@@ -42,7 +44,9 @@ HEADERS += \
     BalancedComponent.h \
     Player.h \
     ListPropertyLayer.h \
-    HeroObject.h
+    HeroObject.h \
+    PathMap.h \
+    PathFinder.h
 
 DISTFILES += MainMenu.jpg
 

@@ -122,6 +122,12 @@ Rectangle {
         sprite:"qrc:///sprites/ArcherSprite.qml"
     }
 
+    PathMap{
+        id:locationPathMap
+        location: hall
+        cellSize: game.cellSize
+    }
+
     MouseArea{
         anchors.fill: parent
         onClicked:{
@@ -138,6 +144,10 @@ Rectangle {
                 order()
             }
         }
+    }
+
+    Component.onCompleted:{
+        locationPathMap.rebuildTerrainData()
     }
 
 }

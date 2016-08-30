@@ -12,6 +12,8 @@
 #include "BalancedComponent.h"
 #include "Player.h"
 #include "HeroObject.h"
+#include "PathMap.h"
+#include "PathFinder.h"
 
 #include "../fkutils/sharedHeaders/loadImageset.h"
 
@@ -51,6 +53,8 @@ int main(int argc, char *argv[])
     ADD_QML_TYPE(BalancedComponent);
     ADD_QML_TYPE(PlayerBase);
     ADD_QML_TYPE(HeroObject);
+    ADD_QML_TYPE(PathMap);
+    ADD_QML_TYPE(PathFinder);
 
     engine.rootContext()->setContextProperty("sizeSet",sizeSet);
     engine.rootContext()->setContextProperty("baseHeight",baseSize.height());

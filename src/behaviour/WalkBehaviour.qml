@@ -5,7 +5,7 @@ DynamicBehaviour{
 
     function update(dt){
         if(distance < 1){
-            pos=target
+            pos=moveTarget
             return
         }
         var x=0
