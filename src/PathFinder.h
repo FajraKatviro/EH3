@@ -35,6 +35,8 @@ private:
     QPoint _target;
     QPoint _pos;
 
+    qint32 cellSize()const;
+
     PathMap* pathMap()const;
     void setPathMap(PathMap* pathMap);
     PathMap* _pathMap=nullptr;

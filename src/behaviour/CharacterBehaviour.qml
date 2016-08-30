@@ -12,7 +12,7 @@ StateMachine{
     property alias moveTarget:pathFinder.nextPos
     property alias hasPath:pathFinder.hasSolution
 
-    property point delta:Qt.point(target.x-pos.x,target.y-pos.y)
+    property point delta:Qt.point(moveTarget.x-pos.x,moveTarget.y-pos.y)
     property real distance:Math.abs(delta.x)+Math.abs(delta.y)
 
     QQ.Binding{

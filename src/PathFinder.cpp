@@ -21,8 +21,11 @@ bool PathFinder::hasSolution() const{
 }
 
 void PathFinder::setTarget(const QPoint &p){
-    if((int)(_target.x/_pathMap->cellSize()) != (int)(p.x/_pathMap->cellSize()) ||
-       (int)(_target.y/_pathMap->cellSize()) != (int)(p.y/_pathMap->cellSize())){
+    qint32 oldX=_target.x()/cellSize(),
+           oldY=_target.y()/cellSize(),
+           newX=p.x()/cellSize(),
+           newY=p.y()/cellSize();
+    if(oldX != newX || oldY != newY){
             _target=p;
             emit targetChanged();
             rebuildPath();
@@ -34,8 +37,11 @@ void PathFinder::setPos(const QPoint &p){
         _pos=p;
         if(!_path.isEmpty()){
             const QPoint& next=_path.first();
-            if((int)(next.x/_pathMap->cellSize()) == (int)(p.x/_pathMap->cellSize()) &&
-               (int)(next.y/_pathMap->cellSize()) == (int)(p.y/_pathMap->cellSize())){
+            qint32 oldX=next.x()/cellSize(),
+                   oldY=next.y()/cellSize(),
+                   newX=p.x()/cellSize(),
+                   newY=p.y()/cellSize();
+            if(oldX == newX && oldY == newY){
                     _path.removeFirst();
                     emit nextPosChanged();
                     if(_path.isEmpty())
@@ -44,6 +50,10 @@ void PathFinder::setPos(const QPoint &p){
         }
         emit posChanged();
     }
+}
+
+qint32 PathFinder::cellSize() const{
+    return _pathMap ? _pathMap->cellSize() : 10;
 }
 
 PathMap* PathFinder::pathMap() const{
