@@ -3,6 +3,8 @@ import QtQuick 2.7 as QQ
 
 StateMachine{
     property point target:Qt.point(100,100)
+    property point source:Qt.point(100,100)
+    property var targetObj
 
     property point delta:Qt.point(target.x-pos.x,target.y-pos.y)
     property real distance:Math.abs(delta.x)+Math.abs(delta.y)

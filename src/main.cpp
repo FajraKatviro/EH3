@@ -32,9 +32,16 @@ int main(int argc, char *argv[])
         qDebug("unable load skillIcons");
     }
 
-    QResource::registerResource("models.rcc");
-    QResource::registerResource("music.rcc");
-    QResource::registerResource("sprites.rcc");
+    FKUtility::ResourceLocator resources;
+    if(resources.load("music")!=FKUtility::ResourceLocator::loadingSuccess){
+        qDebug("unable load music resource");
+    }
+    if(!resources.load("models")!=FKUtility::ResourceLocator::loadingSuccess){
+        qDebug("unable load models resource");
+    }
+    if(!resources.load("sprites")!=FKUtility::ResourceLocator::loadingSuccess){
+        qDebug("unable load sprites resource");
+    }
 
     qreal sizeSet=std::max(((qreal)screenSize.height())/((qreal)baseSize.height()),
                            ((qreal)screenSize.width ())/((qreal)baseSize.width ()));
