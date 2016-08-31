@@ -7,8 +7,8 @@ AnimatedSprite {
     width:200
     height:200
 
-    x:character.pos.x-width/2
-    y:character.pos.y-height*0.9
+    x:character.pos.x+(character.size-width)/2
+    y:character.pos.y-height+character.size
     state:character.currentAnimation
 
     Connections{
@@ -89,5 +89,4 @@ AnimatedSprite {
             }
         }
     }
-
 }

@@ -31,7 +31,7 @@ StateMachine{
         target:charBeh.target
         pos:character.pos
         pathMap: locationPathMap
-        pathWidth: 100
+        pathWidth: character.size
         algorithm: PathFinderAStarAlgorithm{ }
     }
 }

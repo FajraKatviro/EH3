@@ -44,10 +44,16 @@ void PathFinder::setPos(const QPoint &p){
                    newX=p.x()/cellSize(),
                    newY=p.y()/cellSize();
             if(oldX == newX && oldY == newY){
-                    _path.removeFirst();
+                _path.removeFirst();
+                qint32 requiredSpace=std::ceil( _pathWidth / cellSize() );
+                if(_pathMap && _pathMap->getWideBend(_path.first().x(),_path.first().y())>=requiredSpace){
                     emit nextPosChanged();
-                    if(_path.isEmpty())
+                    if(_path.isEmpty()){
                         emit hasSolutionChanged();
+                    }
+                }else{
+                    rebuildPath();
+                }
             }
         }
         emit posChanged();

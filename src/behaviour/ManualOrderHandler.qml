@@ -91,8 +91,8 @@ CharacterBehaviour{
 
     //point-targeted
     function orderPointTarget(destX,destY,orderName){
-        destX=alignToCells(destX)
-        destY=alignToCells(destY)
+        destX=alignToCells(destX - character.size / 2)
+        destY=alignToCells(destY - character.size / 2)
         if(Math.abs(pos.x-destX) >= cellSize ||
            Math.abs(pos.y-destY) >= cellSize ){
             pendingOrder = orderName

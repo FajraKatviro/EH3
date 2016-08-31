@@ -111,10 +111,34 @@ Rectangle {
         property bool obstacle:true
         color:"black"
         width: 100
-        height: 50
+        height: 200
         x:400
         y:700
         z:y+height
+        signal relocated(var obstacle)
+    }
+
+    Rectangle{
+        property bool obstacle:true
+        color:"black"
+        width: 300
+        height: 100
+        x:900
+        y:600
+        z:y+height
+        signal relocated(var obstacle)
+    }
+
+    Rectangle{
+        property bool obstacle:true
+        color:"black"
+        width: 80
+        height: 80
+        x:350
+        y:200
+        z:y+height
+        signal relocated(var obstacle)
+        onXChanged: relocated(this)
     }
 
     Character{

@@ -19,7 +19,7 @@ struct PathFinderAStarAlgorithm::Node{
     bool closed=false;
 
     void computeScores(const Node& end){
-        g = parent->g + getGCost(*parent);
+        g = parent ? parent->g + getGCost(*parent) : 0;
         h = (qAbs(end.x - x) + qAbs(end.y - y)) * 10;
         f = g + h;
     }
@@ -53,13 +53,15 @@ void PathFinderAStarAlgorithm::computePath(QLinkedList<QPoint> &path, const QPoi
 
     Node *start     = nodes.value(sourceX+sourceY*columnCount,nullptr),
          *end       = nodes.value(targetX+targetY*columnCount,nullptr),
-         *current   = nullptr;
+         *current   = nullptr,
+         *best      = start;
 
     QLinkedList<Node*> openList;
     QLinkedList<Node*> closedList;
 
     openList.append(start);
     start->opened=true;
+    start->computeScores(*end);
 
     forever{
         current = *(std::min_element(openList.constBegin(),openList.constEnd(),Node::compareF));
@@ -72,6 +74,10 @@ void PathFinderAStarAlgorithm::computePath(QLinkedList<QPoint> &path, const QPoi
 
         closedList.append(current);
         current->closed = true;
+
+        if(current->h < best->h){
+            best=current;
+        }
 
         for(qint32 x = -1; x<=1; ++x){
             for(qint32 y = -1; y<=1; ++y){
@@ -100,7 +106,7 @@ void PathFinderAStarAlgorithm::computePath(QLinkedList<QPoint> &path, const QPoi
         }
 
         if(openList.isEmpty()){
-            current = nullptr;
+            current = best;
             break;
         }
     }

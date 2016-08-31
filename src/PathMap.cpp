@@ -48,13 +48,16 @@ void PathMap::relocateObstacle(const QVariant obstacle){
     qint32 newCol=item->x()/_cellSize;
     qint32 newIndex=indexFromPos(newCol,newRow);
     if(lastIndex!=newIndex){
+        _obstacles[item]=newIndex;
         Index lastPos=posFromIndex(lastIndex);
         //clear last place
-        fillObstacle(item,1,lastPos.x-newRow,lastPos.y-newCol);
+        fillObstacle(item,1,lastPos.x-newCol,lastPos.y-newRow);
         //fill new position
         fillObstacle(item,0);
         //recalculate changed area
-        qint32 x=std::max(newCol,lastPos.x), y=std::max(newRow,lastPos.y);
+        qint32 width=std::ceil((item->x()+item->width())/_cellSize)-newCol,
+               height=std::ceil((item->y()+item->height())/_cellSize)-newRow;
+        qint32 x=std::max(newCol,lastPos.x)+width, y=std::max(newRow,lastPos.y)+height;
         for(qint32 col=0;col<=x;++col){
             for(qint32 row=0;row<=y;++row){
                 qint32 index=indexFromPos(col,row);
@@ -87,8 +90,8 @@ qint32 PathMap::calculateWideBend(const qint32 index) const{
 
 void PathMap::fillObstacle(QQuickItem *obstacle, const qint32 value, const qint32 xShift, const qint32 yShift){
     qint32 row=obstacle->y()/_cellSize, col=obstacle->x()/_cellSize;
-    qint32 width=(obstacle->x()+obstacle->width())/_cellSize+1-col,
-           height=(obstacle->y()+obstacle->height())/_cellSize+1-row;
+    qint32 width=std::ceil((obstacle->x()+obstacle->width())/_cellSize)-col,
+           height=std::ceil((obstacle->y()+obstacle->height())/_cellSize)-row;
     for(qint32 x=0;x<width;++x){
         for(qint32 y=0;y<height;++y){
             setWideBend(indexFromPos(col+x+xShift,row+y+yShift),value);
