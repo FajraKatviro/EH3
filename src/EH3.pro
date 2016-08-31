@@ -12,7 +12,8 @@ SOURCES += main.cpp \
     Player.cpp \
     HeroObject.cpp \
     PathMap.cpp \
-    PathFinder.cpp
+    PathFinder.cpp \
+    PathFinderAStarAlgorithm.cpp
 
 RESOURCES += qml.qrc
 LARGE_RESOURCES += ../models/models.qrc \
@@ -46,7 +47,9 @@ HEADERS += \
     ListPropertyLayer.h \
     HeroObject.h \
     PathMap.h \
-    PathFinder.h
+    PathFinder.h \
+    PathFinderAlgorithm.h \
+    PathFinderAStarAlgorithm.h
 
 DISTFILES += MainMenu.jpg
 

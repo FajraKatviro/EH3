@@ -22,6 +22,8 @@ public:
     inline qint32 getRowCount()const;
     inline qint32 getColumnCount()const;
 
+    inline bool isEmpty()const;
+
 signals:
     void locationChanged();
     void cellSizeChanged();
@@ -67,6 +69,7 @@ inline QQuickItem* PathMap::location()const{
 inline void PathMap::setLocation(QQuickItem* location){
     if(_location!=location){
         _location=location;
+        rebuildTerrainData();
         emit locationChanged();
     }
 }
@@ -104,6 +107,10 @@ qint32 PathMap::getRowCount() const{
 
 qint32 PathMap::getColumnCount() const{
     return _columnCount;
+}
+
+bool PathMap::isEmpty() const{
+    return _wideBend.isEmpty();
 }
 
 inline qint32 PathMap::getWideBend(const qint32 index) const{

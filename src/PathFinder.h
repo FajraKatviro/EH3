@@ -8,6 +8,8 @@
 
 #include "PathMap.h"
 
+class PathFinderAlgorithm;
+
 class PathFinder : public QObject{
     Q_OBJECT
     Q_PROPERTY(QPoint target READ target WRITE setTarget NOTIFY targetChanged)
@@ -16,6 +18,7 @@ class PathFinder : public QObject{
     Q_PROPERTY(PathMap* pathMap READ pathMap WRITE setPathMap NOTIFY pathMapChanged)
     Q_PROPERTY(bool hasSolution READ hasSolution NOTIFY hasSolutionChanged)
     Q_PROPERTY(qreal pathWidth READ pathWidth WRITE setPathWidth NOTIFY pathWidthChanged)
+    Q_PROPERTY(PathFinderAlgorithm* algorithm READ algorithm WRITE setAlgorithm NOTIFY algorithmChanged)
 public:
     explicit PathFinder(QObject *parent = 0);
 
@@ -27,6 +30,9 @@ signals:
     void hasSolutionChanged();
     void cellSizeChanged();
     void pathWidthChanged();
+    void algorithmChanged();
+private slots:
+    void rebuildPath();
 private:
     QPoint target()const;
     QPoint nextPos()const;
@@ -46,9 +52,12 @@ private:
     void setPathMap(PathMap* pathMap);
     PathMap* _pathMap=nullptr;
 
+    PathFinderAlgorithm* algorithm()const;
+    void setAlgorithm(PathFinderAlgorithm* algorithm);
+    PathFinderAlgorithm* _algorithm=nullptr;
+
     void getPathWithAStarAlgorithm();
 
-    void rebuildPath();
     QLinkedList<QPoint> _path;
 };
 

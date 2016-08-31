@@ -8,18 +8,19 @@ PathMap::PathMap(QObject *parent) : QObject(parent){
 }
 
 void PathMap::rebuildTerrainData(){
+    //reset obstacles
+    for(auto obstacle=_obstacles.constBegin();obstacle!=_obstacles.constEnd();++obstacle){
+        disconnect(obstacle.key(),SIGNAL(relocated(QVariant)),this,SLOT(relocateObstacle(QVariant)));
+    }
+    _obstacles.clear();
+    _wideBend.clear();
+
     if(_location){
         //clear data
         qreal width=_location->width(), height=_location->height();
         _columnCount = width/_cellSize, _rowCount = height/_cellSize;
         qint32 cellCount=_columnCount*_rowCount;
         _wideBend.fill(1,cellCount);
-
-        //reset obstacles
-        for(auto obstacle=_obstacles.constBegin();obstacle!=_obstacles.constEnd();++obstacle){
-            disconnect(obstacle.key(),SIGNAL(relocated(QVariant)),this,SLOT(relocateObstacle(QVariant)));
-        }
-        _obstacles.clear();
 
         //fill obstacles
         for(auto item:_location->childItems()){

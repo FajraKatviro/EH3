@@ -14,10 +14,13 @@
 #include "HeroObject.h"
 #include "PathMap.h"
 #include "PathFinder.h"
+#include "PathFinderAlgorithm.h"
+#include "PathFinderAStarAlgorithm.h"
 
 #include "../fkutils/sharedHeaders/loadImageset.h"
 
 #define ADD_QML_TYPE(typeName) qmlRegisterType<typeName>("eh3",1,0,#typeName)
+#define ADD_QML_ABSTRACT_TYPE(typeName) qmlRegisterUncreatableType<typeName>("eh3",1,0,#typeName,"abstract class")
 
 int main(int argc, char *argv[])
 {
@@ -55,6 +58,9 @@ int main(int argc, char *argv[])
     ADD_QML_TYPE(HeroObject);
     ADD_QML_TYPE(PathMap);
     ADD_QML_TYPE(PathFinder);
+
+    ADD_QML_ABSTRACT_TYPE(PathFinderAlgorithm);
+    ADD_QML_TYPE(PathFinderAStarAlgorithm);
 
     engine.rootContext()->setContextProperty("sizeSet",sizeSet);
     engine.rootContext()->setContextProperty("baseHeight",baseSize.height());

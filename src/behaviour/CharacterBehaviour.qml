@@ -26,11 +26,12 @@ StateMachine{
         return Math.round(val / cellSize) * cellSize
     }
 
-    property PathFinder path:PathFinder{
+    property PathFinder path: PathFinder{
         id:pathFinder
         target:charBeh.target
         pos:character.pos
         pathMap: locationPathMap
         pathWidth: 100
+        algorithm: PathFinderAStarAlgorithm{ }
     }
 }
