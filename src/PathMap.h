@@ -17,6 +17,11 @@ public:
     explicit PathMap(QObject *parent = 0);
     inline qreal cellSize() const;
 
+    inline qint32 getWideBend(const qint32 x, const qint32 y)const;
+
+    inline qint32 getRowCount()const;
+    inline qint32 getColumnCount()const;
+
 signals:
     void locationChanged();
     void cellSizeChanged();
@@ -45,7 +50,6 @@ private:
     qint32 _rowCount=0;
     qint32 _columnCount=0;
 
-    inline qint32 getWideBend(const qint32 x, const qint32 y)const;
     inline qint32 getWideBend(const qint32 index)const;
     inline void setWideBend(const qint32 index, const qint32 value);
     qint32 calculateWideBend(const qint32 index)const;
@@ -92,6 +96,14 @@ inline qint32 PathMap::indexFromPos(const qint32 x, const qint32 y)const{
 
 inline qint32 PathMap::getWideBend(const qint32 x, const qint32 y) const{
     return _wideBend.value(indexFromPos(x,y),0);
+}
+
+qint32 PathMap::getRowCount() const{
+    return _rowCount;
+}
+
+qint32 PathMap::getColumnCount() const{
+    return _columnCount;
 }
 
 inline qint32 PathMap::getWideBend(const qint32 index) const{

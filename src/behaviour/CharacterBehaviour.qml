@@ -31,5 +31,6 @@ StateMachine{
         target:charBeh.target
         pos:character.pos
         pathMap: locationPathMap
+        pathWidth: 100
     }
 }

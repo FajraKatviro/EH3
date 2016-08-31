@@ -15,6 +15,7 @@ class PathFinder : public QObject{
     Q_PROPERTY(QPoint pos READ pos WRITE setPos NOTIFY posChanged)
     Q_PROPERTY(PathMap* pathMap READ pathMap WRITE setPathMap NOTIFY pathMapChanged)
     Q_PROPERTY(bool hasSolution READ hasSolution NOTIFY hasSolutionChanged)
+    Q_PROPERTY(qreal pathWidth READ pathWidth WRITE setPathWidth NOTIFY pathWidthChanged)
 public:
     explicit PathFinder(QObject *parent = 0);
 
@@ -25,6 +26,7 @@ signals:
     void pathMapChanged();
     void hasSolutionChanged();
     void cellSizeChanged();
+    void pathWidthChanged();
 private:
     QPoint target()const;
     QPoint nextPos()const;
@@ -36,10 +38,15 @@ private:
     QPoint _pos;
 
     qint32 cellSize()const;
+    qreal pathWidth()const;
+    void setPathWidth(const qreal pathWidth);
+    qreal _pathWidth=10;
 
     PathMap* pathMap()const;
     void setPathMap(PathMap* pathMap);
     PathMap* _pathMap=nullptr;
+
+    void getPathWithAStarAlgorithm();
 
     void rebuildPath();
     QLinkedList<QPoint> _path;

@@ -108,6 +108,7 @@ Rectangle {
     }*/
 
     Rectangle{
+        property bool obstacle:true
         color:"black"
         width: 100
         height: 50
