@@ -7,6 +7,10 @@ PathMap::PathMap(QObject *parent) : QObject(parent){
 
 }
 
+QVector<qint32> PathMap::getTerrainSpace(const qint32 x, const qint32 y, const qint32 width, const qint32 height, QQuickItem *walker) const{
+
+}
+
 void PathMap::rebuildTerrainData(){
     //reset obstacles
     for(auto obstacle=_obstacles.constBegin();obstacle!=_obstacles.constEnd();++obstacle){
@@ -15,20 +19,31 @@ void PathMap::rebuildTerrainData(){
     _obstacles.clear();
     _wideBend.clear();
 
+    //reset walkers
+    for(auto walker=_walkers.constBegin();walker!=_walkers.constEnd();++walker){
+        disconnect(walker.value(),SIGNAL(relocated(QVariant)),this,SLOT(relocateWalker(QVariant)));
+    }
+    _walkers.clear();
+
     if(_location){
         //clear data
         qreal width=_location->width(), height=_location->height();
-        _columnCount = width/_cellSize, _rowCount = height/_cellSize;
+        _columnCount = toCellCoordinate(width), _rowCount = toCellCoordinate(height);
         qint32 cellCount=_columnCount*_rowCount;
         _wideBend.fill(1,cellCount);
 
         //fill obstacles
         for(auto item:_location->childItems()){
             if(QQmlProperty::read(item, "obstacle").toBool()){
-                connect(item,SIGNAL(relocated(QVariant)),this,SLOT(relocateObstacle(QVariant)));
-                qint32 row=item->y()/_cellSize, col=item->x()/_cellSize;
-                _obstacles.insert(item,indexFromPos(col,row));
-                fillObstacle(item,0);
+                if(QQmlProperty::read(item, "walker").toBool()){
+                    connect(item,SIGNAL(relocated(QVariant)),this,SLOT(relocateWalker(QVariant)));
+                    addWalker(item);
+                }else{
+                    connect(item,SIGNAL(relocated(QVariant)),this,SLOT(relocateObstacle(QVariant)));
+                    qint32 row=toCellCoordinate(item->y()), col=toCellCoordinate(item->x());
+                    _obstacles.insert(item,indexFromPos(col,row));
+                    fillObstacle(item,0);
+                }
             }
         }
 
@@ -44,8 +59,8 @@ void PathMap::rebuildTerrainData(){
 void PathMap::relocateObstacle(const QVariant obstacle){
     QQuickItem* item=qobject_cast<QQuickItem*>(obstacle.value<QObject*>());
     qint32 lastIndex=_obstacles.value(item,-1);
-    qint32 newRow=item->y()/_cellSize;
-    qint32 newCol=item->x()/_cellSize;
+    qint32 newRow=toCellCoordinate(item->y());
+    qint32 newCol=toCellCoordinate(item->x());
     qint32 newIndex=indexFromPos(newCol,newRow);
     if(lastIndex!=newIndex){
         _obstacles[item]=newIndex;
@@ -55,8 +70,8 @@ void PathMap::relocateObstacle(const QVariant obstacle){
         //fill new position
         fillObstacle(item,0);
         //recalculate changed area
-        qint32 width=std::ceil((item->x()+item->width())/_cellSize)-newCol,
-               height=std::ceil((item->y()+item->height())/_cellSize)-newRow;
+        qint32 width=toCellCoordinate(item->width()),
+               height=toCellCoordinate(item->height());
         qint32 x=std::max(newCol,lastPos.x)+width, y=std::max(newRow,lastPos.y)+height;
         for(qint32 col=0;col<=x;++col){
             for(qint32 row=0;row<=y;++row){
@@ -65,6 +80,10 @@ void PathMap::relocateObstacle(const QVariant obstacle){
             }
         }
     }
+}
+
+void PathMap::relocateWalker(const QVariant walker){
+
 }
 
 qint32 PathMap::calculateWideBend(const qint32 index) const{
@@ -89,12 +108,25 @@ qint32 PathMap::calculateWideBend(const qint32 index) const{
 }
 
 void PathMap::fillObstacle(QQuickItem *obstacle, const qint32 value, const qint32 xShift, const qint32 yShift){
-    qint32 row=obstacle->y()/_cellSize, col=obstacle->x()/_cellSize;
-    qint32 width=std::ceil((obstacle->x()+obstacle->width())/_cellSize)-col,
-           height=std::ceil((obstacle->y()+obstacle->height())/_cellSize)-row;
+    qint32 row=toCellCoordinate(obstacle->y()),
+           col=toCellCoordinate(obstacle->x()),
+           width=toCellCoordinate(obstacle->width()),
+           height=toCellCoordinate(obstacle->height());
     for(qint32 x=0;x<width;++x){
         for(qint32 y=0;y<height;++y){
             setWideBend(indexFromPos(col+x+xShift,row+y+yShift),value);
+        }
+    }
+}
+
+void PathMap::addWalker(QQuickItem *walker){
+    qint32 row=toCellCoordinate(walker->y()),
+           col=toCellCoordinate(walker->x()),
+           width=toCellCoordinate(walker->width()),
+           height=toCellCoordinate(walker->height());
+    for(qint32 x=0;x<width;++x){
+        for(qint32 y=0;y<height;++y){
+            _walkers.insert(indexFromPos(col,row),walker);
         }
     }
 }

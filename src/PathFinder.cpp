@@ -23,10 +23,10 @@ bool PathFinder::hasSolution() const{
 }
 
 void PathFinder::setTarget(const QPoint &p){
-    qint32 oldX=_target.x()/cellSize(),
-           oldY=_target.y()/cellSize(),
-           newX=p.x()/cellSize(),
-           newY=p.y()/cellSize();
+    qint32 oldX=toCellCoordinates(_target.x()),
+           oldY=toCellCoordinates(_target.y()),
+           newX=toCellCoordinates(p.x()),
+           newY=toCellCoordinates(p.y());
     if(oldX != newX || oldY != newY){
             _target=p;
             emit targetChanged();
@@ -39,13 +39,13 @@ void PathFinder::setPos(const QPoint &p){
         _pos=p;
         if(!_path.isEmpty()){
             const QPoint& next=_path.first();
-            qint32 oldX=next.x()/cellSize(),
-                   oldY=next.y()/cellSize(),
-                   newX=p.x()/cellSize(),
-                   newY=p.y()/cellSize();
+            qint32 oldX=toCellCoordinates(next.x()),
+                   oldY=toCellCoordinates(next.y()),
+                   newX=toCellCoordinates(p.x()),
+                   newY=toCellCoordinates(p.y());
             if(oldX == newX && oldY == newY){
                 _path.removeFirst();
-                qint32 requiredSpace=std::ceil( _pathWidth / cellSize() );
+                qint32 requiredSpace=toCellCoordinates(_pathWidth);
                 if(_pathMap && _pathMap->getWideBend(_path.first().x(),_path.first().y())>=requiredSpace){
                     emit nextPosChanged();
                     if(_path.isEmpty()){
@@ -58,10 +58,6 @@ void PathFinder::setPos(const QPoint &p){
         }
         emit posChanged();
     }
-}
-
-qint32 PathFinder::cellSize() const{
-    return _pathMap ? _pathMap->cellSize() : 10;
 }
 
 qreal PathFinder::pathWidth() const{
@@ -103,6 +99,10 @@ void PathFinder::setAlgorithm(PathFinderAlgorithm *algorithm){
         emit algorithmChanged();
         rebuildPath();
     }
+}
+
+qint32 PathFinder::toCellCoordinates(const qreal value){
+    return _pathMap ? _pathMap->toCellCoordinate(value) : value;
 }
 
 void PathFinder::rebuildPath(){

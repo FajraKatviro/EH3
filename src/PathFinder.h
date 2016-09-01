@@ -28,7 +28,6 @@ signals:
     void posChanged();
     void pathMapChanged();
     void hasSolutionChanged();
-    void cellSizeChanged();
     void pathWidthChanged();
     void algorithmChanged();
 private slots:
@@ -43,7 +42,6 @@ private:
     QPoint _target;
     QPoint _pos;
 
-    qint32 cellSize()const;
     qreal pathWidth()const;
     void setPathWidth(const qreal pathWidth);
     qreal _pathWidth=10;
@@ -57,6 +55,8 @@ private:
     PathFinderAlgorithm* _algorithm=nullptr;
 
     void getPathWithAStarAlgorithm();
+
+    static qint32 toCellCoordinates(const qreal value);
 
     QLinkedList<QPoint> _path;
 };

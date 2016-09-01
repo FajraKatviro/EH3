@@ -6,6 +6,7 @@
 #include <QVariant>
 #include <QVector>
 #include <QMap>
+#include <QMultiMap>
 
 class QQuickItem;
 
@@ -17,12 +18,14 @@ public:
     explicit PathMap(QObject *parent = 0);
     inline qreal cellSize() const;
 
-    inline qint32 getWideBend(const qint32 x, const qint32 y)const;
-
     inline qint32 getRowCount()const;
     inline qint32 getColumnCount()const;
 
     inline bool isEmpty()const;
+
+    inline qint32 toCellCoordinate(const qint32 value)const;
+
+    QVector<qint32> getTerrainSpace(const qint32 x, const qint32 y, const qint32 width, const qint32 height, QQuickItem* walker)const;
 
 signals:
     void locationChanged();
@@ -31,6 +34,7 @@ signals:
 public slots:
     void rebuildTerrainData();
     void relocateObstacle(const QVariant obstacle);
+    void relocateWalker(const QVariant walker);
 
 private:
     inline QQuickItem* location()const;
@@ -42,6 +46,7 @@ private:
 
     QVector<qint32> _wideBend;
     QMap<QQuickItem*,qint32> _obstacles;
+    QMultiMap<qint32,QQuickItem*> _walkers;
 
     struct Index{
         qint32 x;
@@ -53,6 +58,7 @@ private:
     qint32 _columnCount=0;
 
     inline qint32 getWideBend(const qint32 index)const;
+    inline qint32 getWideBend(const qint32 x, const qint32 y)const;
     inline void setWideBend(const qint32 index, const qint32 value);
     qint32 calculateWideBend(const qint32 index)const;
 
@@ -101,16 +107,20 @@ inline qint32 PathMap::getWideBend(const qint32 x, const qint32 y) const{
     return _wideBend.value(indexFromPos(x,y),0);
 }
 
-qint32 PathMap::getRowCount() const{
+inline qint32 PathMap::getRowCount() const{
     return _rowCount;
 }
 
-qint32 PathMap::getColumnCount() const{
+inline qint32 PathMap::getColumnCount() const{
     return _columnCount;
 }
 
-bool PathMap::isEmpty() const{
+inline bool PathMap::isEmpty() const{
     return _wideBend.isEmpty();
+}
+
+inline qint32 PathMap::toCellCoordinate(const qint32 value) const{
+    return qRound(value/_cellSize);
 }
 
 inline qint32 PathMap::getWideBend(const qint32 index) const{
